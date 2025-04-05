@@ -16,9 +16,9 @@ sightparams = {
   'api_secret': 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
 }
 
-## Opening images and runnng them
-aidogefile = {'media': open('Tests/aidoge.png', 'rb')}
-realdogefile = {'media': open('Tests/realdoge.jpg', 'rb')}
+# ## Opening images and runnng them
+# aidogefile = {'media': open('Tests/aidoge.png', 'rb')}
+# realdogefile = {'media': open('Tests/realdoge.jpg', 'rb')}
 
 
 def chicken_soup(url):
@@ -29,30 +29,33 @@ def chicken_soup(url):
         return soup
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
-        return None
 
 
-r1 = requests.post('https://api.sightengine.com/1.0/check.json', files=aidogefile, data=sightparams)
-r2 = requests.post('https://api.sightengine.com/1.0/check.json', files=realdogefile, data=sightparams)
+# r1 = requests.post('https://api.sightengine.com/1.0/check.json', files=aidogefile, data=sightparams)
+# r2 = requests.post('https://api.sightengine.com/1.0/check.json', files=realdogefile, data=sightparams)
 
-## Sapling AI text
-response = requests.post(
-    "https://api.sapling.ai/api/v1/aidetect",
-    json={
-        "key": "ERCNCCJS75NWG8F37705LVO0Z9M468P6",
-        "text": "This is sample text."
-    }
-)
-
-
+# ## Sapling AI text
+# response = requests.post(
+#     "https://api.sapling.ai/api/v1/aidetect",
+#     json={
+#         "key": "ERCNCCJS75NWG8F37705LVO0Z9M468P6",
+#         "text": "This is sample text."
+#     }
+# )
 
 
-## Prep outputs
-output1 = json.loads(r1.text)
-output2 = json.loads(r2.text)
+# ## Prep outputs
+# output1 = json.loads(r1.text)
+# output2 = json.loads(r2.text)
 
-req = Request('https://api.sightengine.com/1.0/check.json', params=sightparams)
-## Print outputs
-print(output1)
-print(output2)
-pprint(response.json())
+# req = Request('https://api.sightengine.com/1.0/check.json', params=sightparams)
+# ## Print outputs
+# print(output1)
+# print(output2)
+# pprint(response.json())
+
+soup = chicken_soup('https://automationpanda.com/2021/12/29/want-to-practice-test-automation-try-these-demo-sites/')
+
+if soup:
+    goodSoup = soup.get_text()
+    print(goodSoup)
