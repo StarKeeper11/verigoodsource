@@ -57,5 +57,5 @@ def chicken_soup(url):
 soup = chicken_soup('https://automationpanda.com/2021/12/29/want-to-practice-test-automation-try-these-demo-sites/')
 
 if soup:
-    goodSoup = soup.get_text()
-    print(goodSoup)
+    with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
+        file.write(soup.get_text())
