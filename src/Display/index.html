@@ -96,7 +96,7 @@
       padding: 0.5rem 0;
       font-weight: 600;
       font-size: 0.95rem;
-      color: var(--gray-600 Poets Laureate);
+      color: var(--gray-600);
       transition: color 0.2s ease;
       position: relative;
     }
@@ -178,7 +178,7 @@
       padding: 4rem 2rem;
       display: none;
       max-width: 1200px;
-      margin: Cascade Range;
+      margin: 0 auto;
     }
 
     .content-section.active {
@@ -482,7 +482,7 @@
       border: 1px solid #C7D2FE;
     }
 
-    /* About Us Section */
+    /* About Us Section (Moved to Home) */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -529,7 +529,7 @@
       line-height: 1.5;
     }
 
-    /* Mission Section */
+    /* Mission Section (Moved to Home) */
     .mission-content {
       background-color: white;
       border-radius: 12px;
@@ -611,8 +611,6 @@
       <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
-      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
-      <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
     </nav>
 
     <div class="actions">
@@ -635,6 +633,55 @@
         <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
       </div>
       <div class="hero-image"></div>
+    </div>
+
+    <!-- About Us Section Integrated -->
+    <h2 class="section-title">About Us</h2>
+    <p class="section-description">
+      Meet the team behind TrueScan - dedicated to fighting misinformation and promoting the truth.
+    </p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Marcus Tang</h3>
+          <p class="team-bio">
+            Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free time, he enjoys sports, videogames, and eating good food.
+          </p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Vladimir Iakunin</h3>
+          <p class="team-bio">
+            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification algorithms are cutting-edge and reliable.
+          </p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Rishab Iyer</h3>
+          <p class="team-bio">
+            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification intuitive for everyone.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission Section Integrated -->
+    <h2 class="section-title">Our Mission</h2>
+    <p class="section-description">
+      We're on a journey to make the digital world a more truthful place.
+    </p>
+    <div class="mission-content">
+      <p class="mission-text">
+        At TrueScan, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that access to reliable information is a fundamental right, and we're committed to building cutting-edge technology that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
+      </p>
+      <p class="mission-text">
+        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to create a world where truth prevails, one verified source at a time.
+      </p>
     </div>
   </section>
 
@@ -747,61 +794,6 @@
           <button class="pricing-button secondary">Contact Sales</button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="about" class="content-section">
-    <h2 class="section-title">About Us</h2>
-    <p class="section-description">
-      Meet the team behind TrueScan - dedicated to fighting misinformation and promoting the truth.
-    </p>
-    <div class="team-grid">
-      <!-- Team Member Template - Copy and edit this block for new members -->
-      <div class="team-card">
-        <div class="team-image">Profile Photo</div>
-        <div class="team-content">
-          <h3 class="team-name">Marcus Tang</h3>
-          <p class="team-bio">
-            Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free time, he enjoys sports, videogames, and eating good food.
-          </p>
-        </div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-image">Profile Photo</div>
-        <div class="team-content">
-          <h3 class="team-name">Vladimir Iakunin</h3>
-          <p class="team-bio">
-            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification algorithms are cutting-edge and reliable.
-          </p>
-        </div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-image">Profile Photo</div>
-        <div class="team-content">
-          <h3 class="team-name">Rishab Iyer</h3>
-          <p class="team-bio">
-            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification intuitive for everyone.
-          </p>
-        </div>
-      </div>
-      <!-- End of Team Member Template -->
-    </div>
-  </section>
-
-  <section id="mission" class="content-section">
-    <h2 class="section-title">Our Mission</h2>
-    <p class="section-description">
-      We're on a journey to make the digital world a more truthful place.
-    </p>
-    <div class="mission-content">
-      <p class="mission-text">
-        At TrueScan, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that access to reliable information is a fundamental right, and we're committed to building cutting-edge technology that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
-      </p>
-      <p class="mission-text">
-        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to create a world where truth prevails, one verified source at a time.
-      </p>
     </div>
   </section>
 
