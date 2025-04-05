@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<<<<<<< HEAD
   <title>VeriGoodSource - Detect Credibility with One Click</title>
-  <style>
-    /* General Styles */
-    body {
-=======
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -22,7 +18,6 @@
     }
 
     * {
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -39,7 +34,6 @@
       background-color: white;
       padding: 1rem 2rem;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-sm);
@@ -95,7 +89,6 @@
     .nav {
       display: flex;
       gap: 2rem;
-      margin: 1rem 0;
     }
 
     .nav-item {
@@ -130,43 +123,6 @@
       gap: 1rem;
     }
 
-<<<<<<< HEAD
-=======
-    .search-container {
-      position: relative;
-    }
-
-    .search-input {
-      padding: 0.75rem 1rem 0.75rem 2.75rem;
-      border-radius: 12px;
-      border: 1px solid var(--gray-200);
-      background-color: var(--gray-100);
-      width: 200px;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      width: 240px;
-      outline: none;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gray-400);
-      transition: color 0.3s ease;
-    }
-
-    .search-input:focus + .search-icon {
-      color: var(--primary);
-    }
-
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
     .cta-button {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
@@ -197,13 +153,25 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes slideIn {
-      from { width: 0; }
-      to { width: 100%; }
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
     }
 
     .section-title {
@@ -272,355 +240,16 @@
     .hero-image:hover:after {
       opacity: 0;
     }
-<<<<<<< HEAD
-=======
-
-    /* Verify Section */
-    .verify-form {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.3s ease;
-    }
-
-    .verify-form:hover {
-      transform: translateY(-5px);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--gray-800);
-    }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--gray-200);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      resize: vertical;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      outline: none;
-    }
-
-    .form-submit {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    .form-submit:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    /* Extensions Section */
-    .extensions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .extension-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-    }
-
-    .extension-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .extension-image {
-      height: 160px;
-      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-      display: grid;
-      place-items: center;
-      color: var(--gray-400);
-      position: relative;
-    }
-
-    .extension-content {
-      padding: 1.5rem;
-    }
-
-    .extension-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--gray-800);
-    }
-
-    .extension-description {
-      color: var(--gray-600);
-      margin-bottom: 1.5rem;
-    }
-
-    .extension-button {
-      background-color: var(--gray-100);
-      color: var(--primary);
-      border: 1px solid var(--gray-200);
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    .extension-button:hover {
-      background-color: #EEF2FF;
-      border-color: #C7D2FE;
-    }
-
-    /* Pricing Section */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .pricing-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .pricing-card.featured {
-      border: 2px solid var(--primary);
-      transform: scale(1.05);
-    }
-
-    .pricing-header {
-      padding: 1.5rem;
-      background-color: var(--gray-100);
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    .pricing-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--gray-800);
-    }
-
-    .pricing-amount {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--gray-800);
-      margin: 1rem 0 0.5rem;
-    }
-
-    .pricing-features {
-      padding: 1.5rem;
-      flex-grow: 1;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
-      color: var(--gray-800);
-    }
-
-    .feature-item:before {
-      content: "✓";
-      color: var(--primary);
-      font-weight: bold;
-      margin-right: 0.5rem;
-    }
-
-    .pricing-footer {
-      padding: 1.5rem;
-      border-top: 1px solid var(--gray-200);
-    }
-
-    .pricing-button {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .pricing-button.primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border: none;
-    }
-
-    .pricing-button.secondary {
-      background-color: white;
-      color: var(--primary);
-      border: 1px solid #C7D2FE;
-    }
-
-    /* About Us Section (Moved to Home) */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .team-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .team-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .team-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-      display: grid;
-      place-items: center;
-      color: var(--gray-400);
-    }
-
-    .team-content {
-      padding: 1.5rem;
-    }
-
-    .team-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--gray-800);
-      margin-bottom: 0.75rem;
-    }
-
-    .team-bio {
-      color: var(--gray-600);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    /* Mission Section (Moved to Home) */
-    .mission-content {
-      background-color: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .mission-text {
-      color: var(--gray-600);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .mission-highlight {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav {
-        width: 100%;
-        justify-content: space-around;
-      }
-
-      .actions {
-        width: 100%;
-        margin-top: 1rem;
-        flex-direction: column;
-      }
-
-      .search-input {
-        width: 100%;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .hero-image {
-        height: 300px;
-      }
-
-      .extensions-grid,
-      .pricing-grid,
-      .team-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pricing-card.featured {
-        transform: none;
-      }
-    }
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
   </style>
 </head>
 
 <body>
   <header class="header">
     <div class="logo-container" onclick="showSection('home')">
-      <div class="logo">TS</div>
+      <div class="logo">VGS</div>
       <div>
-<<<<<<< HEAD
         <h1 class="site-title">VeriGoodSource</h1>
         <div class="tagline">Detect Credibility with One Click</div>
-=======
-        <h1 class="site-title">TrueScan</h1>
-        <div class="tagline">Get Your Facts Right</div>
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
       </div>
     </div>
 
@@ -632,15 +261,7 @@
     </nav>
 
     <div class="actions">
-<<<<<<< HEAD
       <button class="cta-button" onclick="showSection('scan')">Get Started</button>
-=======
-      <div class="search-container">
-        <span class="search-icon">⌕</span>
-        <input type="text" class="search-input" placeholder="Search sources..." onkeyup="searchSources(event)">
-      </div>
-      <button class="cta-button" onclick="showSection('verify')">Get Started</button>
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
     </div>
   </header>
 
@@ -649,234 +270,17 @@
       <div class="hero-content">
         <h2 class="hero-title">Detect the Credibility of Any Website with One Click</h2>
         <p class="hero-description">
-<<<<<<< HEAD
-          VeriGoodSource empowers you to verify the authenticity of information from any source.
-          Our advanced AI scans content across the web to provide you with reliable insights and similar sources.
-=======
-          TrueScan helps you verify the authenticity of information from any source.
-          Our powerful AI analyzes content across the web to give you confidence in what you read.
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
+          VeriGoodSource empowers you to verify the authenticity of information from any source. Our advanced AI scans
+          content across the web to provide you with reliable insights and similar sources.
         </p>
         <button class="cta-button" onclick="showSection('scan')">Try it Now</button>
       </div>
       <div class="hero-image"></div>
     </div>
-
-    <!-- About Us Section Integrated -->
-    <h2 class="section-title">About Us</h2>
-    <p class="section-description">
-      Meet the team behind TrueScan - dedicated to fighting misinformation and promoting the truth.
-    </p>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-image">Profile Photo</div>
-        <div class="team-content">
-          <h3 class="team-name">Marcus Tang</h3>
-          <p class="team-bio">
-            Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free time, he enjoys sports, videogames, and eating good food.
-          </p>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-image">Profile Photo</div>
-        <div class="team-content">
-          <h3 class="team-name">Vladimir Iakunin</h3>
-          <p class="team-bio">
-            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification algorithms are cutting-edge and reliable.
-          </p>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-image">Profile Photo</div>
-        <div class="team-content">
-          <h3 class="team-name">Rishab Iyer</h3>
-          <p class="team-bio">
-            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification intuitive for everyone.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mission Section Integrated -->
-    <h2 class="section-title">Our Mission</h2>
-    <p class="section-description">
-      We're on a journey to make the digital world a more truthful place.
-    </p>
-    <div class="mission-content">
-      <p class="mission-text">
-        At TrueScan, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that access to reliable information is a fundamental right, and we're committed to building cutting-edge technology that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
-      </p>
-      <p class="mission-text">
-        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to create a world where truth prevails, one verified source at a time.
-      </p>
-    </div>
-  </section>
-
-<<<<<<< HEAD
-  <!-- Scan Source Section -->
-  <section id="scan" class="content-section">
-    <h2 class="section-title">Scan Any Source</h2>
-    <p class="section-description">
-      Enter a URL or paste content to check its credibility. Our AI will analyze the information and provide a detailed
-      report.
-=======
-  <section id="verify" class="content-section">
-    <h2 class="section-title">Verify Any Source</h2>
-    <p class="section-description">
-      Enter a URL, paste content, or upload a document to check for authenticity and reliability.
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
-    </p>
-    <div class="verify-form">
-      <div class="form-group">
-        <label class="form-label">Enter URL</label>
-        <input type="text" id="url-input" class="form-input" placeholder="https://example.com/article">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Or paste content</label>
-<<<<<<< HEAD
-        <textarea id="content-input" class="form-input" rows="5"
-          placeholder="Paste the text content you want to verify..."></textarea>
-      </div>
-
-      <button class="form-submit" id="verify-button">Scan Now</button>
-    </div>
-
-    <!-- Loading Indicator -->
-    <div id="loading-indicator" class="loading-indicator">
-      <div class="spinner"></div>
-      <p>Analyzing sources...</p>
-    </div>
-
-    <!-- Results Container -->
-    <div id="results-container" class="results-container">
-      <div class="verification-status" id="verification-status"></div>
-      <div id="results-list"></div>
-    </div>
-  </section>
-
-  <!-- About Us Section -->
-  <section id="about" class="content-section">
-    <h2 class="section-title">About Us</h2>
-    <p class="section-description">
-      At VeriGoodSource, we are committed to combating misinformation. Our mission is to empower users with tools to
-      verify the credibility of online content.
-      With our advanced AI technology, we aim to make the internet a more trustworthy place.
-    </p>
-=======
-        <textarea class="form-textarea" rows="5" placeholder="Paste the text content you want to verify..."></textarea>
-      </div>
-      <button class="form-submit" onclick="verifyContent()">Verify Now</button>
-    </div>
-  </section>
-
-  <section id="extensions" class="content-section">
-    <h2 class="section-title">Browser Extensions</h2>
-    <p class="section-description">
-      Install our browser extensions to verify information as you browse.
-    </p>
-    <div class="extensions-grid">
-      <div class="extension-card">
-        <div class="extension-image">Chrome</div>
-        <div class="extension-content">
-          <h3 class="extension-title">Chrome Extension</h3>
-          <p class="extension-description">Verify content directly within Chrome.</p>
-          <button class="extension-button">Add to Chrome</button>
-        </div>
-      </div>
-      <div class="extension-card">
-        <div class="extension-image">Firefox</div>
-        <div class="extension-content">
-          <h3 class="extension-title">Firefox Extension</h3>
-          <p class="extension-description">Source verification for Firefox.</p>
-          <button class="extension-button">Add to Firefox</button>
-        </div>
-      </div>
-      <div class="extension-card">
-        <div class="extension-image">Safari</div>
-        <div class="extension-content">
-          <h3 class="extension-title">Safari Extension</h3>
-          <p class="extension-description">Verify content on Safari.</p>
-          <button class="extension-button">Add to Safari</button>
-        </div>
-      </div>
-    </div>
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
-  </section>
-
-  <section id="pricing" class="content-section">
-    <h2 class="section-title">Simple Pricing</h2>
-    <p class="section-description">
-<<<<<<< HEAD
-      Choose the plan that fits your needs. All plans come with our core verification technology. Upgrade anytime as
-      your needs grow.
-    </p>
-    <!-- Pricing details go here -->
-=======
-      Choose the plan that fits your needs.
-    </p>
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3 class="pricing-title">Basic</h3>
-          <div class="pricing-amount">$0</div>
-          <div class="pricing-period">Forever Free</div>
-        </div>
-        <div class="pricing-features">
-          <ul class="feature-list">
-            <li class="feature-item">10 verifications/day</li>
-            <li class="feature-item">Basic reports</li>
-            <li class="feature-item">Chrome extension</li>
-          </ul>
-        </div>
-        <div class="pricing-footer">
-          <button class="pricing-button secondary">Sign Up Free</button>
-        </div>
-      </div>
-      <div class="pricing-card featured">
-        <div class="pricing-header">
-          <h3 class="pricing-title">Pro</h3>
-          <div class="pricing-amount">$12</div>
-          <div class="pricing-period">per month</div>
-        </div>
-        <div class="pricing-features">
-          <ul class="feature-list">
-            <li class="feature-item">Unlimited verifications</li>
-            <li class="feature-item">Detailed reports</li>
-            <li class="feature-item">All extensions</li>
-            <li class="feature-item">Priority support</li>
-          </ul>
-        </div>
-        <div class="pricing-footer">
-          <button class="pricing-button primary">Get Pro</button>
-        </div>
-      </div>
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3 class="pricing-title">Business</h3>
-          <div class="pricing-amount">$49</div>
-          <div class="pricing-period">per month</div>
-        </div>
-        <div class="pricing-features">
-          <ul class="feature-list">
-            <li class="feature-item">Everything in Pro</li>
-            <li class="feature-item">Team management</li>
-            <li class="feature-item">Custom integration</li>
-          </ul>
-        </div>
-        <div class="pricing-footer">
-          <button class="pricing-button secondary">Contact Sales</button>
-        </div>
-      </div>
-    </div>
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
   </section>
 
   <script>
-    let lastScroll = 0;
-    const header = document.querySelector('.header');
-
     function showSection(sectionId) {
-<<<<<<< HEAD
       const sections = document.querySelectorAll('.content-section');
       sections.forEach(section => section.classList.remove('active'));
 
@@ -885,56 +289,8 @@
 
       document.getElementById(sectionId).classList.add('active');
       document.getElementById(`nav-${sectionId}`).classList.add('active');
-=======
-      document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(sectionId).classList.add('active');
-
-      document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-      });
-      document.getElementById('nav-' + sectionId).classList.add('active');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
     }
-
-    function searchSources(event) {
-      if (event.key === 'Enter') {
-        const query = event.target.value.trim();
-        if (query) {
-          alert(`Searching for: ${query}\n(This is a demo - actual search functionality coming soon)`);
-        }
-      }
-    }
-
-    function verifyContent() {
-      const url = document.querySelector('.form-input').value;
-      const content = document.querySelector('.form-textarea').value;
-      if (url || content) {
-        alert('Verification in progress...\n(This is a demo - actual verification coming soon)');
-      }
-    }
-
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-      header.classList.toggle('hidden', currentScroll > lastScroll && currentScroll > 100);
-      lastScroll = currentScroll;
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.content-section').forEach(section => {
-      observer.observe(section);
-    });
   </script>
 </body>
+
 </html>
