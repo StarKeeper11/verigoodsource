@@ -1,5 +1,6 @@
-## TODO: Make text detection
-## TODO: Make image detection
+## TODO: Make text detection (IN PROGRESS)
+## TODO: Make image detection (IN PROGRESS)
+## TODO: FIND A WAY TO SCRAPE WEBSITES (IMPORTANT - NOT STARTED), split website in textual and image data
 
 ## Really simple stuff
 import requests
