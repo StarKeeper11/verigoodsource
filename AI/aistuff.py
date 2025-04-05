@@ -9,8 +9,8 @@ sightparams = {
   'api_user': '115151825',
   'api_secret': 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
 }
-aidogefile = {'media': open('aidoge.png', 'rb')}
-realdogefile = {'media': open('realdoge.png', 'rb')}
+aidogefile = {'media': open('Tests/aidoge.png', 'rb')}
+realdogefile = {'media': open('Tests/realdoge.jpg', 'rb')}
 r1 = requests.post('https://api.sightengine.com/1.0/check.json', files=aidogefile, data=sightparams)
 r2 = requests.post('https://api.sightengine.com/1.0/check.json', files=realdogefile, data=sightparams)
 
