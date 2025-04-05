@@ -2,7 +2,9 @@
 <html>
 
 <head>
+  <title>VeriGoodSource - Detect Credibility with One Click</title>
   <style>
+    /* General Styles */
     body {
       margin: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -99,40 +101,6 @@
       gap: 1rem;
     }
 
-    .search-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .search-input {
-      padding: 0.75rem 1rem 0.75rem 2.75rem;
-      border-radius: 12px;
-      border: 1px solid #E2E8F0;
-      background-color: #F8FAFC;
-      color: #1E293B;
-      width: 200px;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-
-    .search-input::placeholder {
-      color: #94A3B8;
-    }
-
-    .search-input:focus {
-      border-color: #4F46E5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      outline: none;
-      width: 240px;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      color: #94A3B8;
-    }
-
     .cta-button {
       background: linear-gradient(135deg, #4F46E5, #7C3AED);
       color: white;
@@ -192,7 +160,7 @@
       line-height: 1.6;
     }
 
-    /* Home Section */
+    /* Hero Section */
     .hero {
       display: flex;
       align-items: center;
@@ -233,252 +201,6 @@
       color: #94A3B8;
       font-size: 1.2rem;
     }
-
-    /* Verify Section */
-    .verify-form {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: #1E293B;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      border: 1px solid #E2E8F0;
-      font-size: 1rem;
-    }
-
-    .form-input:focus {
-      border-color: #4F46E5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      outline: none;
-    }
-
-    .form-submit {
-      background: linear-gradient(135deg, #4F46E5, #7C3AED);
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-
-    .form-submit:hover {
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-    }
-
-    /* Extensions Section */
-    .extensions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .extension-card {
-      background-color: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    .extension-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    .extension-image {
-      height: 160px;
-      background-color: #E2E8F0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94A3B8;
-    }
-
-    .extension-content {
-      padding: 1.5rem;
-    }
-
-    .extension-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #1E293B;
-    }
-
-    .extension-description {
-      color: #64748B;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .extension-button {
-      background-color: #F8FAFC;
-      color: #4F46E5;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .extension-button:hover {
-      background-color: #EEF2FF;
-      border-color: #C7D2FE;
-    }
-
-    .code-comment {
-      color: #94A3B8;
-    }
-
-    .code-keyword {
-      color: #C7D2FE;
-    }
-
-    .code-string {
-      color: #86EFAC;
-    }
-
-    /* Pricing Section */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .pricing-card {
-      background-color: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    .pricing-card.featured {
-      border: 2px solid #4F46E5;
-      transform: scale(1.05);
-    }
-
-    .pricing-card.featured:hover {
-      transform: scale(1.05) translateY(-5px);
-    }
-
-    .pricing-header {
-      padding: 1.5rem;
-      background-color: #F8FAFC;
-      border-bottom: 1px solid #E2E8F0;
-    }
-
-    .pricing-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #1E293B;
-    }
-
-    .pricing-description {
-      color: #64748B;
-      font-size: 0.9rem;
-    }
-
-    .pricing-amount {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #1E293B;
-      margin: 1.5rem 0 0.5rem;
-    }
-
-    .pricing-period {
-      color: #64748B;
-      font-size: 0.9rem;
-    }
-
-    .pricing-features {
-      padding: 1.5rem;
-      flex-grow: 1;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
-      color: #1E293B;
-    }
-
-    .feature-item:before {
-      content: "✓";
-      color: #4F46E5;
-      font-weight: bold;
-      margin-right: 0.5rem;
-    }
-
-    .pricing-footer {
-      padding: 1.5rem;
-      border-top: 1px solid #E2E8F0;
-    }
-
-    .pricing-button {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .pricing-button.primary {
-      background: linear-gradient(135deg, #4F46E5, #7C3AED);
-      color: white;
-      border: none;
-    }
-
-    .pricing-button.primary:hover {
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-    }
-
-    .pricing-button.secondary {
-      background-color: white;
-      color: #4F46E5;
-      border: 1px solid #C7D2FE;
-    }
-
-    .pricing-button.secondary:hover {
-      background-color: #EEF2FF;
-    }
   </style>
 </head>
 
@@ -488,23 +210,19 @@
       <div class="logo">VGS</div>
       <div>
         <h1 class="site-title">VeriGoodSource</h1>
-        <div class="tagline">Get Your Facts Right</div>
+        <div class="tagline">Detect Credibility with One Click</div>
       </div>
     </div>
 
     <nav class="nav">
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
-      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
-      <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
+      <div id="nav-scan" class="nav-item" onclick="showSection('scan')">Scan Source</div>
+      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
     </nav>
 
     <div class="actions">
-      <div class="search-container">
-        <span class="search-icon">⌕</span>
-        <input type="text" class="search-input" placeholder="Search sources...">
-      </div>
-      <button class="cta-button" onclick="showSection('verify')">Get Started</button>
+      <button class="cta-button" onclick="showSection('scan')">Get Started</button>
     </div>
   </header>
 
@@ -512,182 +230,83 @@
   <section id="home" class="content-section active">
     <div class="hero">
       <div class="hero-content">
-        <h2 class="hero-title">Verify information with just one click</h2>
+        <h2 class="hero-title">Detect the Credibility of Any Website with One Click</h2>
         <p class="hero-description">
-          SourceCheck helps you verify the authenticity of information from any source.
-          Our powerful AI analyzes content across the web to give you confidence in what you read.
+          VeriGoodSource empowers you to verify the authenticity of information from any source.
+          Our advanced AI scans content across the web to provide you with reliable insights and similar sources.
         </p>
-        <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
+        <button class="cta-button" onclick="showSection('scan')">Try it Now</button>
       </div>
       <div class="hero-image">Hero image placeholder</div>
     </div>
   </section>
 
-  <!-- Verify Section -->
-  <section id="verify" class="content-section">
-    <h2 class="section-title">Verify Any Source</h2>
+  <!-- Scan Source Section -->
+  <section id="scan" class="content-section">
+    <h2 class="section-title">Scan Any Source</h2>
     <p class="section-description">
-      Enter a URL, paste content, or upload a document to check for authenticity and reliability.
-      Our AI will analyze the information and provide you with a detailed verification report.
+      Enter a URL or paste content to check its credibility. Our AI will analyze the information and provide a detailed
+      report.
     </p>
 
     <div class="verify-form">
       <div class="form-group">
         <label class="form-label">Enter URL</label>
-        <input type="text" class="form-input" placeholder="https://example.com/article">
+        <input type="text" id="url-input" class="form-input" placeholder="https://example.com/article">
       </div>
 
       <div class="form-group">
         <label class="form-label">Or paste content</label>
-        <textarea class="form-input" rows="5" placeholder="Paste the text content you want to verify..."></textarea>
+        <textarea id="content-input" class="form-input" rows="5"
+          placeholder="Paste the text content you want to verify..."></textarea>
       </div>
 
-      <button class="form-submit">Verify Now</button>
+      <button class="form-submit" id="verify-button">Scan Now</button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="loading-indicator">
+      <div class="spinner"></div>
+      <p>Analyzing sources...</p>
+    </div>
+
+    <!-- Results Container -->
+    <div id="results-container" class="results-container">
+      <div class="verification-status" id="verification-status"></div>
+      <div id="results-list"></div>
     </div>
   </section>
 
-  <!-- Extensions Section -->
-  <section id="extensions" class="content-section">
-    <h2 class="section-title">Browser Extensions</h2>
+  <!-- About Us Section -->
+  <section id="about" class="content-section">
+    <h2 class="section-title">About Us</h2>
     <p class="section-description">
-      Install our browser extensions to verify information as you browse.
-      Our extensions work seamlessly with your favorite browsers.
+      At VeriGoodSource, we are committed to combating misinformation. Our mission is to empower users with tools to
+      verify the credibility of online content.
+      With our advanced AI technology, we aim to make the internet a more trustworthy place.
     </p>
-
-    <div class="extensions-grid">
-      <div class="extension-card">
-        <div class="extension-image">Chrome Extension Icon</div>
-        <div class="extension-content">
-          <h3 class="extension-title">Chrome Extension</h3>
-          <p class="extension-description">
-            Verify content directly within Chrome as you browse websites.
-            One-click verification for any article or social media post.
-          </p>
-          <button class="extension-button">Add to Chrome</button>
-        </div>
-      </div>
-
-      <div class="extension-card">
-        <div class="extension-image">Firefox Extension Icon</div>
-        <div class="extension-content">
-          <h3 class="extension-title">Firefox Extension</h3>
-          <p class="extension-description">
-            Our Firefox extension brings source verification to your favorite browser.
-            Fast and secure verification in just one click.
-          </p>
-          <button class="extension-button">Add to Firefox</button>
-        </div>
-      </div>
-
-      <div class="extension-card">
-        <div class="extension-image">Safari Extension Icon</div>
-        <div class="extension-content">
-          <h3 class="extension-title">Safari Extension</h3>
-          <p class="extension-description">
-            Verify content on Safari with our lightweight and fast extension.
-            Perfect for Mac users who care about information authenticity.
-          </p>
-          <button class="extension-button">Add to Safari</button>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- Pricing Section -->
   <section id="pricing" class="content-section">
     <h2 class="section-title">Simple, Transparent Pricing</h2>
     <p class="section-description">
-      Choose the plan that fits your needs. All plans come with our core verification technology.
-      Upgrade anytime as your needs grow.
+      Choose the plan that fits your needs. All plans come with our core verification technology. Upgrade anytime as
+      your needs grow.
     </p>
-
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3 class="pricing-title">Basic</h3>
-          <p class="pricing-description">For casual users verifying occasional content</p>
-          <div class="pricing-amount">$0</div>
-          <div class="pricing-period">Forever Free</div>
-        </div>
-        <div class="pricing-features">
-          <ul class="feature-list">
-            <li class="feature-item">10 verifications per day</li>
-            <li class="feature-item">Basic verification report</li>
-            <li class="feature-item">Chrome extension</li>
-            <li class="feature-item">Email support</li>
-          </ul>
-        </div>
-        <div class="pricing-footer">
-          <button class="pricing-button secondary">Sign Up Free</button>
-        </div>
-      </div>
-
-      <div class="pricing-card featured">
-        <div class="pricing-header">
-          <h3 class="pricing-title">Pro</h3>
-          <p class="pricing-description">For professionals who need reliable verification</p>
-          <div class="pricing-amount">$12</div>
-          <div class="pricing-period">per month</div>
-        </div>
-        <div class="pricing-features">
-          <ul class="feature-list">
-            <li class="feature-item">Unlimited verifications</li>
-            <li class="feature-item">Detailed verification reports</li>
-            <li class="feature-item">All browser extensions</li>
-            <li class="feature-item">Priority support</li>
-            <li class="feature-item">Source history tracking</li>
-            <li class="feature-item">Batch verification</li>
-          </ul>
-        </div>
-        <div class="pricing-footer">
-          <button class="pricing-button primary">Get Pro</button>
-        </div>
-      </div>
-
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3 class="pricing-title">Business</h3>
-          <p class="pricing-description">For teams and organizations</p>
-          <div class="pricing-amount">$49</div>
-          <div class="pricing-period">per month</div>
-        </div>
-        <div class="pricing-features">
-          <ul class="feature-list">
-            <li class="feature-item">Everything in Pro</li>
-            <li class="feature-item">Team management</li>
-            <li class="feature-item">Custom integration</li>
-            <li class="feature-item">Advanced analytics</li>
-            <li class="feature-item">Dedicated support</li>
-          </ul>
-        </div>
-        <div class="pricing-footer">
-          <button class="pricing-button secondary">Contact Sales</button>
-        </div>
-      </div>
-    </div>
+    <!-- Pricing details go here -->
   </section>
 
   <script>
     function showSection(sectionId) {
-      // Hide all sections
       const sections = document.querySelectorAll('.content-section');
-      sections.forEach(section => {
-        section.classList.remove('active');
-      });
+      sections.forEach(section => section.classList.remove('active'));
 
-      // Show the selected section
-      document.getElementById(sectionId).classList.add('active');
-
-      // Update nav items
       const navItems = document.querySelectorAll('.nav-item');
-      navItems.forEach(item => {
-        item.classList.remove('active');
-      });
+      navItems.forEach(item => item.classList.remove('active'));
 
-      document.getElementById('nav-' + sectionId).classList.add('active');
-
-      // Scroll to top
-      window.scrollTo(0, 0);
+      document.getElementById(sectionId).classList.add('active');
+      document.getElementById(`nav-${sectionId}`).classList.add('active');
     }
   </script>
 </body>
