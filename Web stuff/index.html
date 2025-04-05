@@ -613,46 +613,6 @@
     </div>
   </section>
   
-  <!-- API Section -->
-  <section id="api" class="content-section">
-    <h2 class="section-title">Developer API</h2>
-    <p class="section-description">
-      Integrate SourceCheck's powerful verification capabilities into your own applications.
-      Our API is fast, reliable, and easy to use.
-    </p>
-    
-    <div class="api-content">
-      <div class="api-description">
-        <p class="api-text">
-          With our RESTful API, you can verify content programmatically from any application.
-          We provide comprehensive documentation and code examples to get you started quickly.
-        </p>
-        <p class="api-text">
-          Our API returns detailed verification results including confidence scores,
-          potential misinformation flags, and alternative source suggestions.
-        </p>
-        <button class="cta-button">View API Documentation</button>
-      </div>
-      
-      <div class="api-code">
-        <pre><span class="code-comment">// Example API request in JavaScript</span>
-<span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(<span class="code-string">'https://api.sourcecheck.com/verify'</span>, {
-  method: <span class="code-string">'POST'</span>,
-  headers: {
-    <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span>,
-    <span class="code-string">'Authorization'</span>: <span class="code-string">'Bearer YOUR_API_KEY'</span>
-  },
-  body: JSON.stringify({
-    url: <span class="code-string">'https://example.com/article'</span>,
-    checkLevel: <span class="code-string">'detailed'</span>
-  })
-});
-
-<span class="code-keyword">const</span> result = <span class="code-keyword">await</span> response.json();</pre>
-      </div>
-    </div>
-  </section>
-  
   <!-- Pricing Section -->
   <section id="pricing" class="content-section">
     <h2 class="section-title">Simple, Transparent Pricing</h2>
