@@ -9,6 +9,7 @@ from pprint import pprint
 from urllib.request import Request
 from bs4 import BeautifulSoup
 from PIL import Image
+import os
 from io import BytesIO
 
 
@@ -79,18 +80,39 @@ def extract_images(soup, base_url):
 # pprint(response.json())
 
 soup = chicken_soup('https://sapling.ai/ai-detection-apis')
-soup = None
 
 if soup:
+    print('---')
     with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
         file.write(extract_main_content(soup))
 
     imgs = extract_images(soup, 'https://sapling.ai/ai-detection-apis')
 
     for i in imgs:
-        response = requests.get(i)
-        img = Image.open(BytesIO(response.content))
-        img.show()
+        response = requests.get(i, stream=True)
+        
+        if 'image' in response.headers.get('Content-Type', ''):
+            # Save the image to a temporary file
+            print('---')
+            print("Image at url " + i)
+            temp_file_path = f'src/dump/temp_image_{i.split("/")[-1]}'
+            with open(temp_file_path, 'wb') as temp_file:
+                temp_file.write(response.content)
+
+            print(f"Image saved to {temp_file_path}")
+            aaaa = Image.open(temp_file_path).convert("RGB")
+            print(aaaa.format)
+            new_filename = os.path.splitext(image_path)[0] + ".png"
+            aaaa.save(new_filename)
+
+            # Remove the temporary file
+            # os.remove(temp_file_path)
+
+        # print(i)
+        # print(requests.get(i, stream=True).raw)
+        # img = Image.open(requests.get(i, stream=True).raw)
+        # img.save('src/dump/' + img.filename)
+        # print('---')
 
         # attempt = requests.post('https://api.sightengine.com/1.0/check.json', data=sightparams)
         # output = json.loads(attempt.text)
