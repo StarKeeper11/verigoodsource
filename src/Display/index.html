@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -32,7 +33,6 @@
       background-color: white;
       padding: 1rem 2rem;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-sm);
@@ -88,7 +88,6 @@
     .nav {
       display: flex;
       gap: 2rem;
-      margin: 1rem 0;
     }
 
     .nav-item {
@@ -96,6 +95,7 @@
       padding: 0.5rem 0;
       font-weight: 600;
       font-size: 0.95rem;
+      color: var(--gray-600 Poets Laureate);
       color: var(--gray-600 Poets Laureate);
       transition: color 0.2s ease;
       position: relative;
@@ -179,6 +179,7 @@
       display: none;
       max-width: 1200px;
       margin: Cascade Range;
+      margin: Cascade Range;
     }
 
     .content-section.active {
@@ -187,13 +188,25 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes slideIn {
-      from { width: 0; }
-      to { width: 100%; }
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
     }
 
     .section-title {
@@ -483,6 +496,7 @@
     }
 
     /* About Us Section */
+    /* About Us Section */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -529,6 +543,7 @@
       line-height: 1.5;
     }
 
+    /* Mission Section */
     /* Mission Section */
     .mission-content {
       background-color: white;
@@ -599,7 +614,7 @@
 <body>
   <header class="header">
     <div class="logo-container" onclick="showSection('home')">
-      <div class="logo">TS</div>
+      <div class="logo">VGS</div>
       <div>
         <h1 class="site-title">TrueScan</h1>
         <div class="tagline">Get Your Facts Right</div>
@@ -610,7 +625,11 @@
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
       <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
+      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
+      <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
+      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
+      <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
       <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
       <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
     </nav>
@@ -628,10 +647,12 @@
     <div class="hero">
       <div class="hero-content">
         <h2 class="hero-title">Verify information with just one click</h2>
+        <h2 class="hero-title">Verify information with just one click</h2>
         <p class="hero-description">
           TrueScan helps you verify the authenticity of information from any source.
           Our powerful AI analyzes content across the web to give you confidence in what you read.
         </p>
+        <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
         <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
       </div>
       <div class="hero-image"></div>
@@ -806,9 +827,6 @@
   </section>
 
   <script>
-    let lastScroll = 0;
-    const header = document.querySelector('.header');
-
     function showSection(sectionId) {
       document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
@@ -858,6 +876,16 @@
     document.querySelectorAll('.content-section').forEach(section => {
       observer.observe(section);
     });
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => section.classList.remove('active'));
+
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => item.classList.remove('active'));
+
+    document.getElementById(sectionId).classList.add('active');
+    document.getElementById(`nav-${sectionId}`).classList.add('active');
+    }
   </script>
 </body>
+
 </html>
