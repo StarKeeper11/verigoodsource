@@ -30,6 +30,16 @@ def chicken_soup(url):
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
 
+def extract_main_content(soup):
+    main_content = soup.find('main') or soup.find('article') or soup.find('div', {'id': 'content'})
+    
+    if main_content:
+        # Extract text and add line breaks between paragraphs
+        return '\n\n'.join(p.get_text(strip=True) for p in main_content.find_all(['p', 'div']))
+    else:
+        # Fallback to extracting all text with line breaks
+        return '\n\n'.join(soup.stripped_strings)
+
 
 # r1 = requests.post('https://api.sightengine.com/1.0/check.json', files=aidogefile, data=sightparams)
 # r2 = requests.post('https://api.sightengine.com/1.0/check.json', files=realdogefile, data=sightparams)
@@ -54,8 +64,10 @@ def chicken_soup(url):
 # print(output2)
 # pprint(response.json())
 
-soup = chicken_soup('https://automationpanda.com/2021/12/29/want-to-practice-test-automation-try-these-demo-sites/')
+soup = chicken_soup('https://bugeater.web.app')
 
 if soup:
-    with open('output.txt', 'w', encoding='utf-8') as file:
-        file.write(soup.get_text)
+    with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
+        file.write(extract_main_content(soup))
+
+    print(extract_main_content(soup))
