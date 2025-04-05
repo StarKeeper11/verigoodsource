@@ -8,11 +8,6 @@ import json
 from pprint import pprint
 from urllib.request import Request
 from bs4 import BeautifulSoup
-from PIL import Image
-from io import BytesIO
-
-
-## from PIL import Image
 
 ## Parameters for sightengine, images
 sightparams = {
@@ -45,15 +40,6 @@ def extract_main_content(soup):
         # Fallback to extracting all text with line breaks
         return '\n\n'.join(soup.stripped_strings)
 
-def extract_images(soup, base_url):
-    images = []
-    for img in soup.find_all('img'):
-        src = img.get('src')
-        if src:
-            # Resolve relative URLs to absolute URLs
-            full_url = requests.compat.urljoin(base_url, src)
-            images.append(full_url)
-    return images
 
 # r1 = requests.post('https://api.sightengine.com/1.0/check.json', files=aidogefile, data=sightparams)
 # r2 = requests.post('https://api.sightengine.com/1.0/check.json', files=realdogefile, data=sightparams)
@@ -78,22 +64,10 @@ def extract_images(soup, base_url):
 # print(output2)
 # pprint(response.json())
 
-soup = chicken_soup('https://sapling.ai/ai-detection-apis')
-soup = None
+soup = chicken_soup('https://bugeater.web.app')
 
 if soup:
     with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
         file.write(extract_main_content(soup))
 
-    imgs = extract_images(soup, 'https://sapling.ai/ai-detection-apis')
-
-    for i in imgs:
-        response = requests.get(i)
-        img = Image.open(BytesIO(response.content))
-        img.show()
-
-        # attempt = requests.post('https://api.sightengine.com/1.0/check.json', data=sightparams)
-        # output = json.loads(attempt.text)
-        # print(i)
-        # print(output)
-        # print('---')
+    print(extract_main_content(soup))
