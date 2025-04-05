@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
+  <title>VeriGoodSource - Detect Credibility with One Click</title>
+  <style>
+    /* General Styles */
+    body {
+=======
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -16,6 +22,7 @@
     }
 
     * {
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -123,6 +130,8 @@
       gap: 1rem;
     }
 
+<<<<<<< HEAD
+=======
     .search-container {
       position: relative;
     }
@@ -157,6 +166,7 @@
       color: var(--primary);
     }
 
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
     .cta-button {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
@@ -262,6 +272,8 @@
     .hero-image:hover:after {
       opacity: 0;
     }
+<<<<<<< HEAD
+=======
 
     /* Verify Section */
     .verify-form {
@@ -593,6 +605,7 @@
         transform: none;
       }
     }
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
   </style>
 </head>
 
@@ -601,36 +614,50 @@
     <div class="logo-container" onclick="showSection('home')">
       <div class="logo">TS</div>
       <div>
+<<<<<<< HEAD
+        <h1 class="site-title">VeriGoodSource</h1>
+        <div class="tagline">Detect Credibility with One Click</div>
+=======
         <h1 class="site-title">TrueScan</h1>
         <div class="tagline">Get Your Facts Right</div>
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
       </div>
     </div>
 
     <nav class="nav">
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
-      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
-      <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
+      <div id="nav-scan" class="nav-item" onclick="showSection('scan')">Scan Source</div>
+      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
     </nav>
 
     <div class="actions">
+<<<<<<< HEAD
+      <button class="cta-button" onclick="showSection('scan')">Get Started</button>
+=======
       <div class="search-container">
         <span class="search-icon">⌕</span>
         <input type="text" class="search-input" placeholder="Search sources..." onkeyup="searchSources(event)">
       </div>
       <button class="cta-button" onclick="showSection('verify')">Get Started</button>
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
     </div>
   </header>
 
   <section id="home" class="content-section active">
     <div class="hero">
       <div class="hero-content">
-        <h2 class="hero-title">Verify information with just one click</h2>
+        <h2 class="hero-title">Detect the Credibility of Any Website with One Click</h2>
         <p class="hero-description">
+<<<<<<< HEAD
+          VeriGoodSource empowers you to verify the authenticity of information from any source.
+          Our advanced AI scans content across the web to provide you with reliable insights and similar sources.
+=======
           TrueScan helps you verify the authenticity of information from any source.
           Our powerful AI analyzes content across the web to give you confidence in what you read.
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
         </p>
-        <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
+        <button class="cta-button" onclick="showSection('scan')">Try it Now</button>
       </div>
       <div class="hero-image"></div>
     </div>
@@ -685,18 +712,57 @@
     </div>
   </section>
 
+<<<<<<< HEAD
+  <!-- Scan Source Section -->
+  <section id="scan" class="content-section">
+    <h2 class="section-title">Scan Any Source</h2>
+    <p class="section-description">
+      Enter a URL or paste content to check its credibility. Our AI will analyze the information and provide a detailed
+      report.
+=======
   <section id="verify" class="content-section">
     <h2 class="section-title">Verify Any Source</h2>
     <p class="section-description">
       Enter a URL, paste content, or upload a document to check for authenticity and reliability.
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
     </p>
     <div class="verify-form">
       <div class="form-group">
         <label class="form-label">Enter URL</label>
-        <input type="text" class="form-input" placeholder="https://example.com/article">
+        <input type="text" id="url-input" class="form-input" placeholder="https://example.com/article">
       </div>
       <div class="form-group">
         <label class="form-label">Or paste content</label>
+<<<<<<< HEAD
+        <textarea id="content-input" class="form-input" rows="5"
+          placeholder="Paste the text content you want to verify..."></textarea>
+      </div>
+
+      <button class="form-submit" id="verify-button">Scan Now</button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="loading-indicator">
+      <div class="spinner"></div>
+      <p>Analyzing sources...</p>
+    </div>
+
+    <!-- Results Container -->
+    <div id="results-container" class="results-container">
+      <div class="verification-status" id="verification-status"></div>
+      <div id="results-list"></div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="content-section">
+    <h2 class="section-title">About Us</h2>
+    <p class="section-description">
+      At VeriGoodSource, we are committed to combating misinformation. Our mission is to empower users with tools to
+      verify the credibility of online content.
+      With our advanced AI technology, we aim to make the internet a more trustworthy place.
+    </p>
+=======
         <textarea class="form-textarea" rows="5" placeholder="Paste the text content you want to verify..."></textarea>
       </div>
       <button class="form-submit" onclick="verifyContent()">Verify Now</button>
@@ -734,11 +800,18 @@
         </div>
       </div>
     </div>
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
   </section>
 
   <section id="pricing" class="content-section">
     <h2 class="section-title">Simple Pricing</h2>
     <p class="section-description">
+<<<<<<< HEAD
+      Choose the plan that fits your needs. All plans come with our core verification technology. Upgrade anytime as
+      your needs grow.
+    </p>
+    <!-- Pricing details go here -->
+=======
       Choose the plan that fits your needs.
     </p>
     <div class="pricing-grid">
@@ -795,6 +868,7 @@
         </div>
       </div>
     </div>
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
   </section>
 
   <script>
@@ -802,6 +876,16 @@
     const header = document.querySelector('.header');
 
     function showSection(sectionId) {
+<<<<<<< HEAD
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+
+      document.getElementById(sectionId).classList.add('active');
+      document.getElementById(`nav-${sectionId}`).classList.add('active');
+=======
       document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
       });
@@ -813,6 +897,7 @@
       document.getElementById('nav-' + sectionId).classList.add('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+>>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
     }
 
     function searchSources(event) {
