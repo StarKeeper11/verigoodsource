@@ -1,0 +1,183 @@
+AUTOMATION PANDA
+A blog for software development and testing
+HOME
+ABOUT
+CONTACT
+SPEAKING
+TEACHING
+BDD
+DEVELOPMENT
+TESTING
+PYTHON
+Search for: 
+
+WANT TO PRACTICE TEST AUTOMATION? TRY THESE DEMO SITES!
+One of the biggest struggles in learning how to develop top-notch automation is practice. Testing is as much an art as it is a science. It takes time to discern when to add explicit waits, how to craft robust locators, and why to verify one element over another. It also requires apps with specific elements or endpoints to try certain operations. Unfortunately, although resources for learning how to automate tests (like Test Automation University) are abundant these days, public demo web sites for practicing remain elusive. I’ve struggled to find ones that I like, and others frequently ask me for recommendations.
+
+Which demo sites are good?
+
+Below is a list of demo sites I’ve found either by searching online or through recommendations from friends. Many of these sites appear on other “Top N Demo Sites for Testing” articles as well. My list aims not only to provide links to popular demo sites but also to provide recommendations on how to use them.
+
+Types of sites:
+
+Web UI site – looks like a real web site
+Web UI elements – tutorial pages showcasing web element types
+Mobile UI site – looks like a real mobile site
+API site – provides public APIs for testing
+DIY – “do it yourself”; you must set up and run the demo site yourself
+Demo Site	Type	Description
+ParaBank	Web UI & API site	An online banking site from Parasoft with login and REST/SOAP APIs. You can also access the database if you run the project locally using the source code.
+Restful Booker	Web UI & API site	An online site for bed & breakfast bookings from Mark Winteringham. The frontend is a React app (source), and the backend is a REST API (source).
+Automation Practice Website	Web UI site	A basic online store with optional login from SeleniumFramework.com. Great for example web UI tests.
+Luma – Magento eCommerce	Web UI site	Another online store with several pages.
+Demoblaze	Web UI site	A basic online store with optional login from BlazeMeter. Great for example web UI tests.
+Swag Labs	Web UI site	A basic online store with required login from Sauce Labs. Great for example web UI tests.
+Applitools demo site	Web UI site	A small site with login page and home page from Applitools. Compare/contrast with a second version for visual testing.
+Automation Bookstore	Web UI site	A one-page site for dynamically searching book titles. Good for testing responsive design in short demos.
+JPetStore Demo	Web UI site	A pet store site from MyBatis built on top of MyBatis 3, Spring 3, and Stripes (source).
+GlobalSQA Banking Project	Web UI site	A basic banking app with dropdown login and simple pages from GlobalSQA.
+Gatling Computers Database	Web UI site	A one-page site from Gatling that provides a paginated list of computer models with the ability to filter and add new computers.
+CandyMapper	Web UI site	A Halloween-themed site from Paul Grossman that shows scary bugs. It also comes with a second release that has the fixes.
+Bulldoggy: The Reminders App	DIY Web UI site	A small web app I built myself in Python using FastAPI and HTMX. It has login and uses a TinyDB database.
+OWASP Juice Shop	DIY Web UI site	A test site written entirely in JavaScript using Node.js, Express and Angular. Specifically built for testing security vulnerabilities.
+Cypress Real-World App	DIY Web UI site	A fake payment app from Cypress meant for demonstrating real-world Cypress testing. Could be used for other purposes.
+RealWorld example apps	DIY Web UI site	One demo app implemented in multiple languages and frameworks. Not developed for testing but could nevertheless be used.
+the-internet	Web UI elements	A site from Dave Haeffner and Elemental Selenium with several concise examples of web elements and interactions.
+Selenium Test Pages	Web UI elements	A site with several pages that have slightly deeper examples than the-internet.
+LetCode	Web UI elements	A set of very clean pages along with video tutorials explaining how to automate interactions.
+DemoQA	Web UI elements	A practice site from ToolsQA that includes pages for elements, forms, frames, interactions, and even a small bookstore.
+Ultimate QA Automation Practice	Web UI elements	A set of rich practice pages from Ultimate QA.
+UI Test Automation Playground	Web UI elements	A set of educational pages with interactable elements from the Rapise team.
+SelectorsHub Practice Page	Web UI elements	A practice page from SelectorsHub for interacting with different kinds of web elements.
+WebDriverUniversity.com	Web UI elements	Another set of educational pages with interactable elements.
+Sauce Labs Native Sample Application	DIY Mobile UI site	A mobile app from Sauce Labs for Android and iOS that is very similar to the Swag Labs web site.
+JSONPlaceholder	API site	A public REST API for generating fake data from a set of predefined resources. Follow the guide to learn how to make requests.
+Swagger Petstore	API site	A public REST API from Swagger for testing authentication and CRUD operations for pet store data.
+Public APIs	API site	A long list of public APIs that can be used for testing.
+Device Registry Service	DIY API site	A Flask app I developed for teaching how to test REST APIs. Includes the app and automated API tests, which can both be run locally.
+Best Buy API Playground	DIY API site	A JavaScript-based REST API demo service from Best Buy.
+Which ones do you recommend most?
+
+There are lots of demo sites above. Here are the ones I’d personally recommend for different needs:
+
+Need a site with web UI and APIs together? ParaBank or Restful Booker!
+Need a lifelike site? Automation Practice Website!
+Need a local site with login and data? Bulldoggy: The Reminders App!
+Need to show visual testing? Applitools demo site!
+Need to show security vulnerabilities? OWASP Juice Shop!
+Need to practice interactions on specific elements? the-internet!
+Need an API with dummy data? JSONPlaceholder!
+Need to learn how to do REST API testing? Device Registry Service!
+Of course, the others are still good. That’s why they made the list!
+
+Why bother with “fake” sites?
+
+You might be wondering, “Why do we need demo sites? Why don’t we just use real sites?” Well, demo or “fake” web sites meet a few needs that real sites cannot:
+
+Demo sites offer consistency. They are implemented one way and then do not change. Folks can trust that their tests will always work on them.
+Demo sites are often simpler than real sites. They feel less intimidating for newcomers.
+Demo sites can be designed for instruction. If they are part of a tutorial, the author can add features to the site to demonstrate concepts.
+Demo sites are safer for publications like articles, tutorials, and books. Written content is static, so any sites referenced by examples should also be static. Real sites could change.
+Real sites might require end user agreements that forbid automated requests. Some may even throttle or block requests if they suspect the requests come from a “bot.”
+Real sites might also bear legal or copyright implications, especially if a company is using the sites for their own content.
+What limitations do demo sites have?
+
+Unfortunately, demo sites do have limitations:
+
+Demo sites may be too simplified. They may lack large workflows or real-world data. Folks might become frustrated when they discover inactive elements that appear to be real.
+Demo sites may not be built to scale. High request volume or parallel testing scale might cripple them.
+Demo sites may seem like they have poor quality, whether or not they actually have poor quality. Sometimes, they are built quickly for testing purposes and therefore don’t have the attention to detail as real sites.
+Demo sites with significant company branding may be inappropriate to use. For example, if A and B are competitors, then A shouldn’t use B’s demo site for their product tutorials.
+Other great lists
+
+Here are other great articles that list demo sites for testing. I referred to them while compiling this list:
+
+19 Websites to Practice Automation Testing (UI, API, Mobile) (Ultimate QA)
+Best Demo Websites for Practicing Different Types of Software Tests (Abstracta)
+Best Demo Websites To Perform Software Test Automation (TestMatik)
+Do you have other demo sites to recommend? Put them in the comments below!
+
+Share this:
+Click to share on Twitter (Opens in new window)Click to share on Facebook (Opens in new window)Click to share on LinkedIn (Opens in new window)
+
+Posted in testing and tagged API, automation, demo site, REST, testing, web UI on December 29, 2021. 12 Comments
+Post navigation← Thoughts on Remote Work24 Lessons from Working in Software →
+12 COMMENTS
+
+Yoyo
+December 29, 2021 at 10:13 pm
+Genuine Fake Watches 🤣🤣
+
+Like
+
+REPLY
+Pingback: Five Blogs – 31 December 2021 – 5blogs
+Pingback: Utilisez ces sites de démonstration pour vous entrainer à l'automatisation de tests - williamralitera.com
+James Prior
+January 10, 2022 at 11:28 am
+I setup a basic e-commerce demo site a while back at pomeloshop.com. I reup the domain every year, and I don’t plan to change it. Its hanging out gathering dust if anyone wants to use it.
+
+Like
+
+REPLY
+Sukesh
+January 1, 2023 at 10:00 pm
+QA Automation Testing
+
+Like
+
+REPLY
+mshahMayur Shah
+July 29, 2022 at 1:24 pm
+I have one more site to be added, https://magento.softwaretestingboard.com/
+
+It would be great if that can be added to the list
+
+P.S: I am the promoter of the site
+
+Liked by 1 person
+
+REPLY
+Swap
+August 12, 2022 at 11:53 pm
+Any practice program of any scenario do you have?
+
+Like
+
+REPLY
+Dominik
+March 10, 2023 at 9:58 am
+Hi!
+One quick question – I was using this website for some Puppeteer practice but it seems not work at all now – some issues with SSL Certificate. Do you plan to fix that?
+
+Like
+
+REPLY
+Pingback: IT (2) – U Marků
+Pingback: Software Testing Pipeline
+Pingback: How Do We Interview Testers at MoEngage? | MoEngage
+Roy de Kleijn
+February 16, 2023 at 9:03 am
+https://practicesoftwaretesting.com might be a good one to practice software testing
+
+Like
+
+REPLY
+LEAVE A COMMENT
+
+FOLLOW BLOG VIA EMAIL
+
+Enter your email address to follow this blog and receive notifications of new posts by email.
+
+Email Address: 
+
+FOLLOW
+
+Join 3,770 other subscribers
+TAGS
+
+Agile Angular Atom automation BDD behave best practices Boa Constrictor books C# career Chrome code review command line communication compiler conference continuous delivery continuous integration cooking coverage CSharp Cucumber Cypress design patterns development Django end-to-end Example Mapping exploratory testing frameworks Gherkin Git integration Jasmine Java JavaScript Jenkins Karma languages mentoring metrics Notepad++ opportunity parallel performance Perl Playwright process Protractor PyCharm PyCon PyOhio pytest Python quality REST Ruby Screenplay Selenium shift-left SpecFlow TDD teamwork test data testing Testing Pyramid Three Amigos travel unit video games Visual Studio Code web WebDriver writing
+TWEETS
+
+My Tweets
+START A BLOG AT WORDPRESS.COM.
