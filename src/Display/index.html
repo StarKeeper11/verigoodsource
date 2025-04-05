@@ -482,6 +482,75 @@
       border: 1px solid #C7D2FE;
     }
 
+    /* About Us Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .team-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .team-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+      display: grid;
+      place-items: center;
+      color: var(--gray-400);
+    }
+
+    .team-content {
+      padding: 1.5rem;
+    }
+
+    .team-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 0.75rem;
+    }
+
+    .team-bio {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Mission Section */
+    .mission-content {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .mission-text {
+      color: var(--gray-600);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .header {
@@ -515,7 +584,8 @@
       }
 
       .extensions-grid,
-      .pricing-grid {
+      .pricing-grid,
+      .team-grid {
         grid-template-columns: 1fr;
       }
 
@@ -541,6 +611,8 @@
       <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
+      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
+      <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
     </nav>
 
     <div class="actions">
@@ -605,7 +677,7 @@
           <p class="extension-description">Source verification for Firefox.</p>
           <button class="extension-button">Add to Firefox</button>
         </div>
-      </ Begindiv>
+      </div>
       <div class="extension-card">
         <div class="extension-image">Safari</div>
         <div class="extension-content">
@@ -678,6 +750,61 @@
     </div>
   </section>
 
+  <section id="about" class="content-section">
+    <h2 class="section-title">About Us</h2>
+    <p class="section-description">
+      Meet the team behind VeriGoodSource - dedicated to fighting misinformation and promoting truth.
+    </p>
+    <div class="team-grid">
+      <!-- Team Member Template - Copy and edit this block for new members -->
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">John Doe</h3>
+          <p class="team-bio">
+            John leads VeriGoodSource with a passion for truth and technology. With 10+ years in AI development, he's committed to making information verification accessible to all.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Jane Smith</h3>
+          <p class="team-bio">
+            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification algorithms are cutting-edge and reliable.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Alex Johnson</h3>
+          <p class="team-bio">
+            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification intuitive for everyone.
+          </p>
+        </div>
+      </div>
+      <!-- End of Team Member Template -->
+    </div>
+  </section>
+
+  <section id="mission" class="content-section">
+    <h2 class="section-title">Our Mission</h2>
+    <p class="section-description">
+      We're on a journey to make the digital world a more truthful place.
+    </p>
+    <div class="mission-content">
+      <p class="mission-text">
+        At VeriGoodSource, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that access to reliable information is a fundamental right, and we're committed to building cutting-edge technology that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
+      </p>
+      <p class="mission-text">
+        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to create a world where truth prevails, one verified source at a time.
+      </p>
+    </div>
+  </section>
+
   <script>
     let lastScroll = 0;
     const header = document.querySelector('.header');
@@ -719,7 +846,6 @@
       lastScroll = currentScroll;
     });
 
-    // Lazy load sections
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
