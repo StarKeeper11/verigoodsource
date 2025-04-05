@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <style>
     body {
@@ -7,7 +8,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: #f5f7fa;
     }
-    
+
     .header {
       background-color: white;
       color: #121212;
@@ -20,14 +21,14 @@
       top: 0;
       z-index: 100;
     }
-    
+
     .logo-container {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       cursor: pointer;
     }
-    
+
     .logo {
       display: flex;
       align-items: center;
@@ -40,7 +41,7 @@
       width: 40px;
       border-radius: 12px;
     }
-    
+
     .site-title {
       font-size: 1.5rem;
       font-weight: 800;
@@ -51,18 +52,18 @@
       background-clip: text;
       letter-spacing: -0.5px;
     }
-    
+
     .tagline {
       font-size: 0.875rem;
       color: #64748B;
       font-weight: 500;
     }
-    
+
     .nav {
       display: flex;
       gap: 2rem;
     }
-    
+
     .nav-item {
       cursor: pointer;
       padding: 0.5rem 0;
@@ -71,16 +72,16 @@
       color: #64748B;
       transition: all 0.2s ease;
     }
-    
+
     .nav-item:hover {
       color: #4F46E5;
     }
-    
+
     .nav-item.active {
       color: #4F46E5;
       position: relative;
     }
-    
+
     .nav-item.active:after {
       content: '';
       position: absolute;
@@ -91,19 +92,19 @@
       background-color: #4F46E5;
       border-radius: 3px;
     }
-    
+
     .actions {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-    
+
     .search-container {
       position: relative;
       display: flex;
       align-items: center;
     }
-    
+
     .search-input {
       padding: 0.75rem 1rem 0.75rem 2.75rem;
       border-radius: 12px;
@@ -114,24 +115,24 @@
       font-size: 0.9rem;
       transition: all 0.3s ease;
     }
-    
+
     .search-input::placeholder {
       color: #94A3B8;
     }
-    
+
     .search-input:focus {
       border-color: #4F46E5;
       box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
       outline: none;
       width: 240px;
     }
-    
+
     .search-icon {
       position: absolute;
       left: 12px;
       color: #94A3B8;
     }
-    
+
     .cta-button {
       background: linear-gradient(135deg, #4F46E5, #7C3AED);
       color: white;
@@ -143,12 +144,12 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    
+
     .cta-button:hover {
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
       transform: translateY(-2px);
     }
-    
+
     /* Content sections */
     .content-section {
       padding: 3rem 2rem;
@@ -156,17 +157,24 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .content-section.active {
       display: block;
       animation: fadeIn 0.5s ease;
     }
-    
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
+
     .section-title {
       font-size: 2.5rem;
       font-weight: 800;
@@ -174,7 +182,7 @@
       color: #1E293B;
       text-align: center;
     }
-    
+
     .section-description {
       text-align: center;
       color: #64748B;
@@ -183,7 +191,7 @@
       margin: 0 auto 3rem;
       line-height: 1.6;
     }
-    
+
     /* Home Section */
     .hero {
       display: flex;
@@ -191,11 +199,11 @@
       gap: 4rem;
       margin-bottom: 4rem;
     }
-    
+
     .hero-content {
       flex: 1;
     }
-    
+
     .hero-title {
       font-size: 3rem;
       font-weight: 800;
@@ -206,14 +214,14 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
+
     .hero-description {
       font-size: 1.2rem;
       color: #64748B;
       margin-bottom: 2rem;
       line-height: 1.6;
     }
-    
+
     .hero-image {
       flex: 1;
       background-color: #E2E8F0;
@@ -225,7 +233,7 @@
       color: #94A3B8;
       font-size: 1.2rem;
     }
-    
+
     /* Verify Section */
     .verify-form {
       max-width: 800px;
@@ -235,18 +243,18 @@
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
-    
+
     .form-group {
       margin-bottom: 1.5rem;
     }
-    
+
     .form-label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 600;
       color: #1E293B;
     }
-    
+
     .form-input {
       width: 100%;
       padding: 0.75rem 1rem;
@@ -254,13 +262,13 @@
       border: 1px solid #E2E8F0;
       font-size: 1rem;
     }
-    
+
     .form-input:focus {
       border-color: #4F46E5;
       box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
       outline: none;
     }
-    
+
     .form-submit {
       background: linear-gradient(135deg, #4F46E5, #7C3AED);
       color: white;
@@ -273,18 +281,18 @@
       transition: all 0.3s ease;
       width: 100%;
     }
-    
+
     .form-submit:hover {
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
     }
-    
+
     /* Extensions Section */
     .extensions-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
-    
+
     .extension-card {
       background-color: white;
       border-radius: 12px;
@@ -292,12 +300,12 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
     }
-    
+
     .extension-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     }
-    
+
     .extension-image {
       height: 160px;
       background-color: #E2E8F0;
@@ -306,24 +314,24 @@
       justify-content: center;
       color: #94A3B8;
     }
-    
+
     .extension-content {
       padding: 1.5rem;
     }
-    
+
     .extension-title {
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
       color: #1E293B;
     }
-    
+
     .extension-description {
       color: #64748B;
       margin-bottom: 1.5rem;
       line-height: 1.6;
     }
-    
+
     .extension-button {
       background-color: #F8FAFC;
       color: #4F46E5;
@@ -334,31 +342,31 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    
+
     .extension-button:hover {
       background-color: #EEF2FF;
       border-color: #C7D2FE;
     }
-    
+
     .code-comment {
       color: #94A3B8;
     }
-    
+
     .code-keyword {
       color: #C7D2FE;
     }
-    
+
     .code-string {
       color: #86EFAC;
     }
-    
+
     /* Pricing Section */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
     }
-    
+
     .pricing-card {
       background-color: white;
       border-radius: 12px;
@@ -368,81 +376,81 @@
       display: flex;
       flex-direction: column;
     }
-    
+
     .pricing-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     }
-    
+
     .pricing-card.featured {
       border: 2px solid #4F46E5;
       transform: scale(1.05);
     }
-    
+
     .pricing-card.featured:hover {
       transform: scale(1.05) translateY(-5px);
     }
-    
+
     .pricing-header {
       padding: 1.5rem;
       background-color: #F8FAFC;
       border-bottom: 1px solid #E2E8F0;
     }
-    
+
     .pricing-title {
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
       color: #1E293B;
     }
-    
+
     .pricing-description {
       color: #64748B;
       font-size: 0.9rem;
     }
-    
+
     .pricing-amount {
       font-size: 2.5rem;
       font-weight: 800;
       color: #1E293B;
       margin: 1.5rem 0 0.5rem;
     }
-    
+
     .pricing-period {
       color: #64748B;
       font-size: 0.9rem;
     }
-    
+
     .pricing-features {
       padding: 1.5rem;
       flex-grow: 1;
     }
-    
+
     .feature-list {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-    
+
     .feature-item {
       display: flex;
       align-items: center;
       margin-bottom: 0.75rem;
       color: #1E293B;
     }
-    
+
     .feature-item:before {
       content: "✓";
       color: #4F46E5;
       font-weight: bold;
       margin-right: 0.5rem;
     }
-    
+
     .pricing-footer {
       padding: 1.5rem;
       border-top: 1px solid #E2E8F0;
     }
-    
+
     .pricing-button {
       width: 100%;
       padding: 0.75rem;
@@ -451,28 +459,29 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    
+
     .pricing-button.primary {
       background: linear-gradient(135deg, #4F46E5, #7C3AED);
       color: white;
       border: none;
     }
-    
+
     .pricing-button.primary:hover {
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
     }
-    
+
     .pricing-button.secondary {
       background-color: white;
       color: #4F46E5;
       border: 1px solid #C7D2FE;
     }
-    
+
     .pricing-button.secondary:hover {
       background-color: #EEF2FF;
     }
   </style>
 </head>
+
 <body>
   <header class="header">
     <div class="logo-container" onclick="showSection('home')">
@@ -482,14 +491,14 @@
         <div class="tagline">Get Your Facts Right</div>
       </div>
     </div>
-    
+
     <nav class="nav">
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
       <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
     </nav>
-    
+
     <div class="actions">
       <div class="search-container">
         <span class="search-icon">⌕</span>
@@ -498,14 +507,14 @@
       <button class="cta-button" onclick="showSection('verify')">Get Started</button>
     </div>
   </header>
-  
+
   <!-- Home Section -->
   <section id="home" class="content-section active">
     <div class="hero">
       <div class="hero-content">
         <h2 class="hero-title">Verify information with just one click</h2>
         <p class="hero-description">
-          SourceCheck helps you verify the authenticity of information from any source. 
+          SourceCheck helps you verify the authenticity of information from any source.
           Our powerful AI analyzes content across the web to give you confidence in what you read.
         </p>
         <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
@@ -513,7 +522,7 @@
       <div class="hero-image">Hero image placeholder</div>
     </div>
   </section>
-  
+
   <!-- Verify Section -->
   <section id="verify" class="content-section">
     <h2 class="section-title">Verify Any Source</h2>
@@ -521,22 +530,22 @@
       Enter a URL, paste content, or upload a document to check for authenticity and reliability.
       Our AI will analyze the information and provide you with a detailed verification report.
     </p>
-    
+
     <div class="verify-form">
       <div class="form-group">
         <label class="form-label">Enter URL</label>
         <input type="text" class="form-input" placeholder="https://example.com/article">
       </div>
-      
+
       <div class="form-group">
         <label class="form-label">Or paste content</label>
         <textarea class="form-input" rows="5" placeholder="Paste the text content you want to verify..."></textarea>
       </div>
-      
+
       <button class="form-submit">Verify Now</button>
     </div>
   </section>
-  
+
   <!-- Extensions Section -->
   <section id="extensions" class="content-section">
     <h2 class="section-title">Browser Extensions</h2>
@@ -544,7 +553,7 @@
       Install our browser extensions to verify information as you browse.
       Our extensions work seamlessly with your favorite browsers.
     </p>
-    
+
     <div class="extensions-grid">
       <div class="extension-card">
         <div class="extension-image">Chrome Extension Icon</div>
@@ -557,7 +566,7 @@
           <button class="extension-button">Add to Chrome</button>
         </div>
       </div>
-      
+
       <div class="extension-card">
         <div class="extension-image">Firefox Extension Icon</div>
         <div class="extension-content">
@@ -569,7 +578,7 @@
           <button class="extension-button">Add to Firefox</button>
         </div>
       </div>
-      
+
       <div class="extension-card">
         <div class="extension-image">Safari Extension Icon</div>
         <div class="extension-content">
@@ -583,7 +592,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Pricing Section -->
   <section id="pricing" class="content-section">
     <h2 class="section-title">Simple, Transparent Pricing</h2>
@@ -591,7 +600,7 @@
       Choose the plan that fits your needs. All plans come with our core verification technology.
       Upgrade anytime as your needs grow.
     </p>
-    
+
     <div class="pricing-grid">
       <div class="pricing-card">
         <div class="pricing-header">
@@ -612,7 +621,7 @@
           <button class="pricing-button secondary">Sign Up Free</button>
         </div>
       </div>
-      
+
       <div class="pricing-card featured">
         <div class="pricing-header">
           <h3 class="pricing-title">Pro</h3>
@@ -634,7 +643,7 @@
           <button class="pricing-button primary">Get Pro</button>
         </div>
       </div>
-      
+
       <div class="pricing-card">
         <div class="pricing-header">
           <h3 class="pricing-title">Business</h3>
@@ -657,7 +666,7 @@
       </div>
     </div>
   </section>
-  
+
   <script>
     function showSection(sectionId) {
       // Hide all sections
@@ -665,21 +674,22 @@
       sections.forEach(section => {
         section.classList.remove('active');
       });
-      
+
       // Show the selected section
       document.getElementById(sectionId).classList.add('active');
-      
+
       // Update nav items
       const navItems = document.querySelectorAll('.nav-item');
       navItems.forEach(item => {
         item.classList.remove('active');
       });
-      
+
       document.getElementById('nav-' + sectionId).classList.add('active');
-      
+
       // Scroll to top
       window.scrollTo(0, 0);
     }
   </script>
 </body>
+
 </html>
