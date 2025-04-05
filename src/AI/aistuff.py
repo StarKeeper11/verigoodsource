@@ -10,7 +10,7 @@ from urllib.request import Request
 from bs4 import BeautifulSoup
 from PIL import Image
 import os
-from io import BytesIO
+from webptools import cwebp
 
 
 ## from PIL import Image
@@ -100,10 +100,8 @@ if soup:
                 temp_file.write(response.content)
 
             print(f"Image saved to {temp_file_path}")
+            result = cwebp(input_image=temp_file_path, output_image=temp_file_path, option=f"-q {100}")
             aaaa = Image.open(temp_file_path).convert("RGB")
-            print(aaaa.format)
-            new_filename = os.path.splitext(image_path)[0] + ".png"
-            aaaa.save(new_filename)
 
             # Remove the temporary file
             # os.remove(temp_file_path)
