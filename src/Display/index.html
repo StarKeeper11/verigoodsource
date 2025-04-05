@@ -2,7 +2,6 @@
 <html>
 
 <head>
-  <title>VeriGoodSource - Detect Credibility with One Click</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -97,6 +96,7 @@
       font-weight: 600;
       font-size: 0.95rem;
       color: var(--gray-600 Poets Laureate);
+      color: var(--gray-600 Poets Laureate);
       transition: color 0.2s ease;
       position: relative;
     }
@@ -123,6 +123,40 @@
       gap: 1rem;
     }
 
+    .search-container {
+      position: relative;
+    }
+
+    .search-input {
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      background-color: var(--gray-100);
+      width: 200px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+      width: 240px;
+      outline: none;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      transition: color 0.3s ease;
+    }
+
+    .search-input:focus + .search-icon {
+      color: var(--primary);
+    }
+
     .cta-button {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
@@ -144,6 +178,7 @@
       padding: 4rem 2rem;
       display: none;
       max-width: 1200px;
+      margin: Cascade Range;
       margin: Cascade Range;
     }
 
@@ -461,6 +496,7 @@
     }
 
     /* About Us Section */
+    /* About Us Section */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -507,6 +543,7 @@
       line-height: 1.5;
     }
 
+    /* Mission Section */
     /* Mission Section */
     .mission-content {
       background-color: white;
@@ -581,8 +618,6 @@
       <div>
         <h1 class="site-title">TrueScan</h1>
         <div class="tagline">Get Your Facts Right</div>
-        <h1 class="site-title">VeriGoodSource</h1>
-        <div class="tagline">Detect Credibility with One Click</div>
       </div>
     </div>
 
@@ -590,7 +625,11 @@
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
       <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
+      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
+      <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
+      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
+      <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
       <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
       <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
     </nav>
@@ -601,7 +640,6 @@
         <input type="text" class="search-input" placeholder="Search sources..." onkeyup="searchSources(event)">
       </div>
       <button class="cta-button" onclick="showSection('verify')">Get Started</button>
-      <button class="cta-button" onclick="showSection('scan')">Get Started</button>
     </div>
   </header>
 
@@ -609,15 +647,182 @@
     <div class="hero">
       <div class="hero-content">
         <h2 class="hero-title">Verify information with just one click</h2>
+        <h2 class="hero-title">Verify information with just one click</h2>
         <p class="hero-description">
           TrueScan helps you verify the authenticity of information from any source.
           Our powerful AI analyzes content across the web to give you confidence in what you read.
-          VeriGoodSource empowers you to verify the authenticity of information from any source. Our advanced AI scans
-          content across the web to provide you with reliable insights and similar sources.
         </p>
+        <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
         <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
       </div>
       <div class="hero-image"></div>
+    </div>
+  </section>
+
+  <section id="verify" class="content-section">
+    <h2 class="section-title">Verify Any Source</h2>
+    <p class="section-description">
+      Enter a URL, paste content, or upload a document to check for authenticity and reliability.
+    </p>
+    <div class="verify-form">
+      <div class="form-group">
+        <label class="form-label">Enter URL</label>
+        <input type="text" class="form-input" placeholder="https://example.com/article">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Or paste content</label>
+        <textarea class="form-textarea" rows="5" placeholder="Paste the text content you want to verify..."></textarea>
+      </div>
+      <button class="form-submit" onclick="verifyContent()">Verify Now</button>
+    </div>
+  </section>
+
+  <section id="extensions" class="content-section">
+    <h2 class="section-title">Browser Extensions</h2>
+    <p class="section-description">
+      Install our browser extensions to verify information as you browse.
+    </p>
+    <div class="extensions-grid">
+      <div class="extension-card">
+        <div class="extension-image">Chrome</div>
+        <div class="extension-content">
+          <h3 class="extension-title">Chrome Extension</h3>
+          <p class="extension-description">Verify content directly within Chrome.</p>
+          <button class="extension-button">Add to Chrome</button>
+        </div>
+      </div>
+      <div class="extension-card">
+        <div class="extension-image">Firefox</div>
+        <div class="extension-content">
+          <h3 class="extension-title">Firefox Extension</h3>
+          <p class="extension-description">Source verification for Firefox.</p>
+          <button class="extension-button">Add to Firefox</button>
+        </div>
+      </div>
+      <div class="extension-card">
+        <div class="extension-image">Safari</div>
+        <div class="extension-content">
+          <h3 class="extension-title">Safari Extension</h3>
+          <p class="extension-description">Verify content on Safari.</p>
+          <button class="extension-button">Add to Safari</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="content-section">
+    <h2 class="section-title">Simple Pricing</h2>
+    <p class="section-description">
+      Choose the plan that fits your needs.
+    </p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Basic</h3>
+          <div class="pricing-amount">$0</div>
+          <div class="pricing-period">Forever Free</div>
+        </div>
+        <div class="pricing-features">
+          <ul class="feature-list">
+            <li class="feature-item">10 verifications/day</li>
+            <li class="feature-item">Basic reports</li>
+            <li class="feature-item">Chrome extension</li>
+          </ul>
+        </div>
+        <div class="pricing-footer">
+          <button class="pricing-button secondary">Sign Up Free</button>
+        </div>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Pro</h3>
+          <div class="pricing-amount">$12</div>
+          <div class="pricing-period">per month</div>
+        </div>
+        <div class="pricing-features">
+          <ul class="feature-list">
+            <li class="feature-item">Unlimited verifications</li>
+            <li class="feature-item">Detailed reports</li>
+            <li class="feature-item">All extensions</li>
+            <li class="feature-item">Priority support</li>
+          </ul>
+        </div>
+        <div class="pricing-footer">
+          <button class="pricing-button primary">Get Pro</button>
+        </div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Business</h3>
+          <div class="pricing-amount">$49</div>
+          <div class="pricing-period">per month</div>
+        </div>
+        <div class="pricing-features">
+          <ul class="feature-list">
+            <li class="feature-item">Everything in Pro</li>
+            <li class="feature-item">Team management</li>
+            <li class="feature-item">Custom integration</li>
+          </ul>
+        </div>
+        <div class="pricing-footer">
+          <button class="pricing-button secondary">Contact Sales</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="content-section">
+    <h2 class="section-title">About Us</h2>
+    <p class="section-description">
+      Meet the team behind TrueScan - dedicated to fighting misinformation and promoting the truth.
+    </p>
+    <div class="team-grid">
+      <!-- Team Member Template - Copy and edit this block for new members -->
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Marcus Tang</h3>
+          <p class="team-bio">
+            Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free time, he enjoys sports, videogames, and eating good food.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Vladimir Iakunin</h3>
+          <p class="team-bio">
+            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification algorithms are cutting-edge and reliable.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-image">Profile Photo</div>
+        <div class="team-content">
+          <h3 class="team-name">Rishab Iyer</h3>
+          <p class="team-bio">
+            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification intuitive for everyone.
+          </p>
+        </div>
+      </div>
+      <!-- End of Team Member Template -->
+    </div>
+  </section>
+
+  <section id="mission" class="content-section">
+    <h2 class="section-title">Our Mission</h2>
+    <p class="section-description">
+      We're on a journey to make the digital world a more truthful place.
+    </p>
+    <div class="mission-content">
+      <p class="mission-text">
+        At TrueScan, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that access to reliable information is a fundamental right, and we're committed to building cutting-edge technology that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
+      </p>
+      <p class="mission-text">
+        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to create a world where truth prevails, one verified source at a time.
+      </p>
     </div>
   </section>
 
