@@ -9,12 +9,25 @@
       padding: 15px;
       font-family: 'Inter', Arial, sans-serif;
       background-color: #f5f7fa;
+      margin: 0;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .cnn-icon {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .cnn-icon:hover {
+      transform: scale(1.1);
     }
     h3 {
       color: #1E293B;
-      margin-bottom: 15px;
       font-size: 16px;
-      text-align: center;
+      margin: 10px 0;
     }
     .input-group {
       margin-bottom: 15px;
@@ -54,7 +67,10 @@
   </style>
 </head>
 <body>
-  <h3>TrueScan Verifier</h3>
+  <div class="header">
+    <img src="icons/cnn-icon.png" alt="CNN" class="cnn-icon" onclick="openCNN()">
+    <h3>TrueScan Verifier</h3>
+  </div>
   <div class="input-group">
     <input type="text" id="urlInput" placeholder="Enter URL to verify">
   </div>
@@ -65,6 +81,10 @@
   <div class="status" id="status"></div>
 
   <script>
+    function openCNN() {
+      chrome.tabs.create({ url: 'https://www.cnn.com' });
+    }
+
     document.getElementById('verifyBtn').addEventListener('click', function() {
       const url = document.getElementById('urlInput').value.trim();
       const text = document.getElementById('textInput').value.trim();
@@ -77,18 +97,14 @@
 
       status.textContent = 'Processing...';
       
-      // This is a demo - in a real extension, you'd make an API call
       setTimeout(() => {
-        // Simulate verification result
         if (url) {
           status.textContent = 'URL verification complete (demo)';
-          // Open the verify section with the URL
           chrome.tabs.create({ 
             url: `chrome-extension://${chrome.runtime.id}/index.html#verify?url=${encodeURIComponent(url)}`
           });
         } else {
           status.textContent = 'Text verification complete (demo)';
-          // Open the verify section with the text
           chrome.tabs.create({ 
             url: `chrome-extension://${chrome.runtime.id}/index.html#verify?text=${encodeURIComponent(text)}`
           });
@@ -96,7 +112,6 @@
       }, 1000);
     });
 
-    // Get current tab URL when extension opens
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       if (tabs[0] && tabs[0].url) {
         document.getElementById('urlInput').value = tabs[0].url;
@@ -105,41 +120,3 @@
   </script>
 </body>
 </html>
-
-<!-- Manifest file -->
-<script type="application/json" id="manifest">
-{
-  "manifest_version": 3,
-  "name": "TrueScan Verifier",
-  "version": "1.0",
-  "description": "Quickly verify URLs or text with TrueScan",
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
-    }
-  },
-  "permissions": [
-    "tabs",
-    "activeTab"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["index.html"],
-      "matches": ["<all_urls>"]
-    }
-  ]
-}
-</script>
-
-<!-- Background service worker -->
-<script type="text/javascript" id="background">
-chrome.action.onClicked.addListener((tab) => {
-  // Optional: Handle any background tasks if needed
-});
-</script>
