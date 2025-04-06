@@ -14,6 +14,7 @@ This is a quick guide to quickly host TrustScan.
 
 You may need to update index.html with the IP adress you put in flask.py
 There are plans to expand this project in the future, stay tuned!
+Github tend to mess up flask.py, specifically APIs. Update them to suit your needs.
 
 Written by Vlad
 With Rishab and Marcus

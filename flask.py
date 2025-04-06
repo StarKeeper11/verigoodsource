@@ -14,14 +14,14 @@ import math
 from openai import OpenAI
 import random
 
-os.environ['SIGHTENGINE_PRIVATE'] = 'JF2JSXgtDUBWk5gZKfZp5JyAWKp46jW2'
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['SIGHTENGINE_PRIVATE'] = ''
+os.environ['OPENAI_API_KEY'] = ''
 client = OpenAI()
 
 sightparams = {
   'models': 'genai',
-  'api_user': '384942881',
-  'api_secret': '{api_secret}'
+  'api_user': '',
+  'api_secret': ''
 }
 
 app = Flask(__name__)
@@ -149,7 +149,7 @@ def run_url(url):
             textresponse = requests.post(
                 "https://api.sapling.ai/api/v1/aidetect",
                 json={
-                    "key": "E00YARC4QHFDBOT8LAIUVMONOAO3PX87",
+                    "key": "",
                     "text": rawText
                 }
             )
