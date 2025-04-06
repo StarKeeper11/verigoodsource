@@ -10,11 +10,8 @@ from urllib.request import Request
 from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
-import subprocess
-import tempfile
-import shutil
 import os
-
+import cairosvg 
 
 ## from PIL import Image
 
@@ -60,90 +57,51 @@ def extract_images(soup, base_url):
     return images
 
 def download_as_webp(url, output_path, quality=80):
-    """
-    Downloads an image from URL and saves as WebP, handling SVGs and other formats.
-    
-    Args:
-        url (str): Image URL to download
-        output_path (str): Where to save the WebP file
-        quality (int): WebP quality (0-100)
-    
-    Returns:
-        bool: Success or failure
-    """
     try:
-        print("start")
         # Ensure output directory exists
         os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
         
         # Download image
         response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
         response.raise_for_status()
-        print("no error from response")
         
         # Determine if SVG
         is_svg = ('svg' in response.headers.get('Content-Type', '').lower() or 
                  url.lower().endswith('.svg'))
         
-        print("svg check complete")
-        
-        # Create temp file
-        with tempfile.NamedTemporaryFile(delete=False, suffix='.tmp') as temp_file:
-            temp_path = temp_file.name
-            temp_file.write(response.content)
-
-        print("temp file created")
-        
-        success = False
-        
-        # Handle SVG conversion via external tools
         if is_svg:
-            # Try converting SVG to PNG first
-            png_path = f"{temp_path}.png"
-            
-            # Try librsvg or Inkscape
-            if shutil.which('rsvg-convert'):
-                subprocess.run(['rsvg-convert', '-o', png_path, temp_path], capture_output=True)
-                if os.path.exists(png_path):
-                    temp_path = png_path  # Use PNG for next step
-                    success = True
-            elif shutil.which('inkscape') and not success:
-                subprocess.run(['inkscape', '--export-filename', png_path, temp_path], capture_output=True)
-                if os.path.exists(png_path):
-                    temp_path = png_path  # Use PNG for next step
-                    success = True
-        
-        # Try PIL first for non-SVGs or when SVG was converted to PNG
-        if not is_svg or (is_svg and success):
+            # Handle SVG with cairosvg
             try:
-                img = Image.open(temp_path if is_svg else BytesIO(response.content))
+                # Convert SVG to PNG in memory
+                png_data = cairosvg.svg2png(bytestring=response.content)
+                
+                # Open the PNG data with PIL
+                img = Image.open(BytesIO(png_data))
+                
+                # Save as WebP
+                img.save(output_path, 'WEBP', quality=quality)
+                return True
+            except Exception as e:
+                print(f"SVG conversion failed: {e}")
+                return False
+        else:
+            # For non-SVG images, use PIL directly
+            try:
+                img = Image.open(BytesIO(response.content))
+                
+                # Convert to RGB if mode is not supported for WebP
                 if img.mode not in ['RGB', 'RGBA']:
                     img = img.convert('RGB')
+                
+                # Save as WebP
                 img.save(output_path, 'WEBP', quality=quality)
-                success = True
-            except Exception:
-                success = False
-        
-        # ImageMagick as fallback
-        if not success and shutil.which('convert'):
-            subprocess.run(['convert', temp_path, '-quality', str(quality), output_path], capture_output=True)
-            success = os.path.exists(output_path)
-        
-        # Clean up temp files
-        if os.path.exists(temp_path):
-            os.remove(temp_path)
-        if 'png_path' in locals() and os.path.exists(png_path):
-            os.remove(png_path)
-            
-        return success
-        
+                return True
+            except Exception as e:
+                print(f"Image conversion failed: {e}")
+                return False
+                
     except Exception as e:
         print(f"Error: {e}")
-        # Clean up any temp files that might exist
-        if 'temp_path' in locals() and os.path.exists(temp_path):
-            os.remove(temp_path)
-        if 'png_path' in locals() and os.path.exists(png_path):
-            os.remove(png_path)
         return False
 
 # ## Sapling AI text
@@ -155,16 +113,20 @@ def download_as_webp(url, output_path, quality=80):
 #     }
 # )
 
-soup = chicken_soup('https://sapling.ai/ai-detection-apis')
+soup = chicken_soup('https://en.wikipedia.org/wiki/Fish')
 
 if soup:
     print('---')
     with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
         file.write(extract_main_content(soup))
 
-    imgs = extract_images(soup, 'https://sapling.ai/ai-detection-apis')
+    imgs = extract_images(soup, 'https://en.wikipedia.org/wiki/Fish')
 
-    download_as_webp(imgs[0], 'src/dumb/', quality=80)
+    imageindex = 0
+
+    for i in imgs:
+        download_as_webp(i, f'src/dump/tempimg{imageindex}.webp', quality=200)
+        imageindex += 1
 
     # for i in imgs:
     #     download_image_as_webp(i, )
