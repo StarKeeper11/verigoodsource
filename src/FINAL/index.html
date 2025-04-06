@@ -14,7 +14,7 @@
       const url = document.getElementById('urlInput').value;
       document.getElementById('result').textContent = "Processing...";
       
-      fetch('http://10.232.32.1:5000/process-url', {
+      fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ url: url })
@@ -22,14 +22,13 @@
       .then(response => response.json())
       .then(data => {
         if (data.result) {
-          document.getElementById('result').textContent = data.result;
-          document.getElementById('maintitle').textContent = data.title;
+          document.getElementById('result').innerText = data.result;
         } else {
-          document.getElementById('result').textContent = "Error: " + data.error;
+          document.getElementById('result').innerText = "Error: " + data.error;
         }
       })
       .catch(error => {
-        document.getElementById('result').textContent = "Connection error";
+        document.getElementById('result').textContent = error;
       });
     }
   </script>
