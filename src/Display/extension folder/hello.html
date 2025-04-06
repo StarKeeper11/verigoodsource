@@ -1,22 +1,145 @@
-<!-- filepath: /Users/marcustang/Desktop/verigoodsource/src/Display/extension folder/hello.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello Extensions</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 10px;
-        }
-        h1 {
-            font-size: 18px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>TrueScan Verifier</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: 'Inter', Arial, sans-serif;
+      background-color: #f5f7fa;
+    }
+    h3 {
+      color: #1E293B;
+      margin-bottom: 15px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    textarea {
+      height: 80px;
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #4F46E5, #7C3AED);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+    }
+    .status {
+      margin-top: 10px;
+      text-align: center;
+      color: #64748B;
+      font-size: 12px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to Hello Extensions!</h1>
-    <p>This is your Chrome extension popup.</p>
+  <h3>TrueScan Verifier</h3>
+  <div class="input-group">
+    <input type="text" id="urlInput" placeholder="Enter URL to verify">
+  </div>
+  <div class="input-group">
+    <textarea id="textInput" placeholder="Or paste text to verify"></textarea>
+  </div>
+  <button id="verifyBtn">Verify Now</button>
+  <div class="status" id="status"></div>
+
+  <script>
+    document.getElementById('verifyBtn').addEventListener('click', function() {
+      const url = document.getElementById('urlInput').value.trim();
+      const text = document.getElementById('textInput').value.trim();
+      const status = document.getElementById('status');
+
+      if (!url && !text) {
+        status.textContent = 'Please enter a URL or text to verify';
+        return;
+      }
+
+      status.textContent = 'Processing...';
+      
+      // This is a demo - in a real extension, you'd make an API call
+      setTimeout(() => {
+        // Simulate verification result
+        if (url) {
+          status.textContent = 'URL verification complete (demo)';
+          // Open the verify section with the URL
+          chrome.tabs.create({ 
+            url: `chrome-extension://${chrome.runtime.id}/index.html#verify?url=${encodeURIComponent(url)}`
+          });
+        } else {
+          status.textContent = 'Text verification complete (demo)';
+          // Open the verify section with the text
+          chrome.tabs.create({ 
+            url: `chrome-extension://${chrome.runtime.id}/index.html#verify?text=${encodeURIComponent(text)}`
+          });
+        }
+      }, 1000);
+    });
+
+    // Get current tab URL when extension opens
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      if (tabs[0] && tabs[0].url) {
+        document.getElementById('urlInput').value = tabs[0].url;
+      }
+    });
+  </script>
 </body>
 </html>
+
+<!-- Manifest file -->
+<script type="application/json" id="manifest">
+{
+  "manifest_version": 3,
+  "name": "TrueScan Verifier",
+  "version": "1.0",
+  "description": "Quickly verify URLs or text with TrueScan",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
+</script>
+
+<!-- Background service worker -->
+<script type="text/javascript" id="background">
+chrome.action.onClicked.addListener((tab) => {
+  // Optional: Handle any background tasks if needed
+});
+</script>
