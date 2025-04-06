@@ -24,10 +24,7 @@ def chicken_soup(url):
     response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
     response.raise_for_status()  # Raise an error for bad status codes
     soup = None
-    if url.endswith('.html'):
-        soup = BeautifulSoup(response.text.replace(".html", ""), 'html.parser')
-    else:
-        soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, 'html.parser')
     return soup
 
 def extract_main_content(soup):

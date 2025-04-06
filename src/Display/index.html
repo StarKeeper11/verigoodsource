@@ -317,6 +317,11 @@
       transform: translateY(-2px);
     }
 
+    .form-submit:disabled {
+      background: var(--gray-200);
+      cursor: not-allowed;
+    }
+
     .progress-container {
       width: 70%;
       height: 20px;
@@ -1113,7 +1118,7 @@
       const progressBar = progressContainer.querySelector('.progress-bar');
       progressBar.style.width = '0%';
 
-      document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
+      //document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
 
       fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
         method: 'POST',
@@ -1122,22 +1127,30 @@
       })
       .then(response => response.json())
       .then(data => {
-        document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
+        //document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
         if (data.result) {
           document.getElementById('result-popup-body').innerText = data.result;
         } else {
           document.getElementById('result-popup-body').innerText = "Error: " + data.error;
+          document.getElementById('submitbtn').disabled = false;
+        document.getElementById('submitbtn').textContent = "Verify Now";
+          progressBar.width = '100%';
+          showResults();
         }
         document.getElementById('submitbtn').disabled = false;
         document.getElementById('submitbtn').textContent = "Verify Now";
+        progressBar.width = '100%';
+        showResults();
       })
       .catch(error => {
-        document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
+        //document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
         document.getElementById('result-popup-body').textContent = error;
         document.getElementById('submitbtn').disabled = false;
         document.getElementById('submitbtn').textContent = "Verify Now";
+        progressBar.width = '100%';
+        showResults();
       });
-      progressBar.width = '100%';
+      
     }
 
     function searchSources(event) {
