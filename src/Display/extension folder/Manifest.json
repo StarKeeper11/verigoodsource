@@ -6,19 +6,7 @@
   "author": "TrueScan Team",
   "action": {
       "default_popup": "popup.html",
-      "default_icon": {
-          "16": "icon16.png",
-          "32": "icon32.png",
-          "48": "icon48.png",
-          "128": "icon128.png"
-      },
       "default_title": "TrueScan - Verify Content"
-  },
-  "icons": {
-      "16": "icon16.png",
-      "32": "icon32.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
   },
   "permissions": [
       "activeTab",
@@ -44,11 +32,7 @@
               "popup.html",
               "index.html",
               "styles.css",
-              "scripts/*",
-              "icon16.png",
-              "icon32.png",
-              "icon48.png",
-              "icon128.png"
+              "scripts/*"
           ],
           "matches": ["<all_urls>"]
       }
