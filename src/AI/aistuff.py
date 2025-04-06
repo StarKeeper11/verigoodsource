@@ -8,6 +8,12 @@ import json
 from pprint import pprint
 from urllib.request import Request
 from bs4 import BeautifulSoup
+from PIL import Image
+import os
+from webptools import cwebp
+
+
+## from PIL import Image
 
 ## Parameters for sightengine, images
 sightparams = {
@@ -40,6 +46,15 @@ def extract_main_content(soup):
         # Fallback to extracting all text with line breaks
         return '\n\n'.join(soup.stripped_strings)
 
+def extract_images(soup, base_url):
+    images = []
+    for img in soup.find_all('img'):
+        src = img.get('src')
+        if src:
+            # Resolve relative URLs to absolute URLs
+            full_url = requests.compat.urljoin(base_url, src)
+            images.append(full_url)
+    return images
 
 # r1 = requests.post('https://api.sightengine.com/1.0/check.json', files=aidogefile, data=sightparams)
 # r2 = requests.post('https://api.sightengine.com/1.0/check.json', files=realdogefile, data=sightparams)
@@ -64,10 +79,41 @@ def extract_main_content(soup):
 # print(output2)
 # pprint(response.json())
 
-soup = chicken_soup('https://bugeater.web.app')
+soup = chicken_soup('https://sapling.ai/ai-detection-apis')
 
 if soup:
+    print('---')
     with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
         file.write(extract_main_content(soup))
 
-    print(extract_main_content(soup))
+    imgs = extract_images(soup, 'https://sapling.ai/ai-detection-apis')
+
+    for i in imgs:
+        response = requests.get(i, stream=True)
+        
+        if 'image' in response.headers.get('Content-Type', ''):
+            # Save the image to a temporary file
+            print('---')
+            print("Image at url " + i)
+            temp_file_path = f'src/dump/temp_image_{i.split("/")[-1]}'
+            with open(temp_file_path, 'wb') as temp_file:
+                temp_file.write(response.content)
+
+            print(f"Image saved to {temp_file_path}")
+            result = cwebp(input_image=temp_file_path, output_image=temp_file_path, option=f"-q {100}")
+            aaaa = Image.open(temp_file_path).convert("RGB")
+
+            # Remove the temporary file
+            # os.remove(temp_file_path)
+
+        # print(i)
+        # print(requests.get(i, stream=True).raw)
+        # img = Image.open(requests.get(i, stream=True).raw)
+        # img.save('src/dump/' + img.filename)
+        # print('---')
+
+        # attempt = requests.post('https://api.sightengine.com/1.0/check.json', data=sightparams)
+        # output = json.loads(attempt.text)
+        # print(i)
+        # print(output)
+        # print('---')

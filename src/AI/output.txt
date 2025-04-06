@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 Top 5 AI Detection APIs | Sapling
 
 Products
@@ -358,4 +356,3 @@ Account
 Register
 
 Sign in
->>>>>>> 0baa33f38512835cc8a9c67dfebc809c67ac6dba
