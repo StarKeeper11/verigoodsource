@@ -262,7 +262,7 @@
       box-shadow: var(--shadow-md);
       transition: transform 0.3s ease;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 2rem;
     }
 
@@ -298,14 +298,6 @@
       outline: none;
     }
 
-    .form-example-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: var(--shadow-sm);
-    }
-
     .form-submit {
       background: linear-gradient(135deg, var(--primary), var(--teal));
       color: white;
@@ -322,6 +314,66 @@
     .form-submit:hover {
       box-shadow: var(--shadow-md);
       transform: translateY(-2px);
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 20px;
+      background: var(--gray-200);
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+      position: relative;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(45deg,
+          var(--primary) 0%,
+          var(--secondary) 50%,
+          var(--teal) 100%);
+      background-size: 200% 200%;
+      position: relative;
+      animation: gradientShift 3s ease infinite, progress 2s ease forwards;
+    }
+
+    .progress-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(135deg,
+          rgba(255, 255, 255, 0.2) 0px,
+          rgba(255, 255, 255, 0.2) 10px,
+          transparent 10px,
+          transparent 20px);
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 0%;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+
+    @keyframes progress {
+      0% {
+        width: 0%;
+      }
+
+      100% {
+        width: 100%;
+      }
     }
 
     .extensions-grid {
@@ -548,13 +600,25 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes slideIn {
-      from { width: 0; }
-      to { width: 100%; }
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
     }
 
     @media (max-width: 768px) {
@@ -628,9 +692,9 @@
     </div>
     <nav class="nav">
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
+      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Scan</div>
       <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
       <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
-      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Scan</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-tips" class="nav-item" onclick="showSection('tips')">Tips</div>
     </nav>
@@ -667,10 +731,10 @@
         <label class="form-label">Enter URL</label>
         <input type="text" class="form-input" placeholder="https://example.com/article">
       </div>
-      <div class="form-group">
-        <img src="/images/example-verification.png" alt="Example Verification Image" class="form-example-image">
-      </div>
       <button class="form-submit" onclick="verifyContent()">Verify Now</button>
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-bar"></div>
+      </div>
     </div>
   </section>
 
@@ -732,7 +796,8 @@
           <img src="img2.jpg" alt="Vladimir Iakunin" class="team-img adjusted-position">
           <div class="team-overlay">
             <p class="team-bio">
-              Vladimir is an 8th Grader at Bullis Charter School. He currently lives in Mountain View, California. Vlad oversees our technical infrastructure. His expertise in machine learning ensures our verification
+              Vladimir is an 8th Grader at Bullis Charter School. He currently lives in Mountain View, California. Vlad
+              oversees our technical infrastructure. His expertise in machine learning ensures our verification
               algorithms are cutting-edge and reliable.
             </p>
           </div>
@@ -746,7 +811,8 @@
           <img src="img1.jpg" alt="Rishab Iyer" class="team-img">
           <div class="team-overlay">
             <p class="team-bio">
-              Rishab is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. Rishab crafts our user experience with a focus on simplicity and clarity. His designs make verification
+              Rishab is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. Rishab
+              crafts our user experience with a focus on simplicity and clarity. His designs make verification
               intuitive for everyone.
             </p>
           </div>
@@ -762,6 +828,7 @@
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
       }
+
       .team-card {
         background-color: white;
         border-radius: 12px;
@@ -769,28 +836,34 @@
         overflow: hidden;
         transition: all 0.3s ease;
       }
+
       .team-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-md);
       }
+
       .team-image-container {
         width: 100%;
         height: 250px;
         position: relative;
         overflow: hidden;
       }
+
       .team-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
+
       .adjusted-position {
         object-position: center 30%;
       }
+
       .team-card:hover .team-img {
         transform: scale(1.05);
       }
+
       .team-overlay {
         position: absolute;
         bottom: 0;
@@ -804,20 +877,24 @@
         transform: translateY(100%);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
+
       .team-card:hover .team-overlay {
         opacity: 1;
         transform: translateY(0);
       }
+
       .team-content {
         padding: 1.5rem;
         text-align: center;
       }
+
       .team-name {
         font-size: 1.25rem;
         font-weight: 700;
         color: var(--gray-800);
         margin-bottom: 0.5rem;
       }
+
       .team-bio {
         font-size: 0.95rem;
         line-height: 1.6;
@@ -836,7 +913,11 @@
     </p>
     <div class="mission-content">
       <p class="mission-text">
-        At <span class="mission-bold">TrueScan</span>, we’re committed to <span class="mission-bold">empowering all</span> with the tools to distinguish <span class="mission-bold">fact from fiction</span> in <span class="mission-bold">today’s complex digital world</span>. Access to <span class="mission-bold">reliable information</span> is a right, and <span class="mission-bold">our technology</span> ensures fast, accurate, and <span class="mission-bold">accessible verification</span>.
+        At <span class="mission-bold">TrueScan</span>, we’re committed to <span class="mission-bold">empowering
+          all</span> with the tools to distinguish <span class="mission-bold">fact from fiction</span> in <span
+          class="mission-bold">today’s complex digital world</span>. Access to <span class="mission-bold">reliable
+          information</span> is a right, and <span class="mission-bold">our technology</span> ensures fast, accurate,
+        and <span class="mission-bold">accessible verification</span>.
       </p>
     </div>
   </section>
@@ -863,16 +944,20 @@
       With current-day technology, finding the truth online can be challenging. Here are some steps to spot fake news:
     </p>
     <p class="article-text">
-      <strong>1. Check the Source:</strong> Verify the credibility of the website or publisher. Reputable sources have a history of accurate reporting. 
+      <strong>1. Check the Source:</strong> Verify the credibility of the website or publisher. Reputable sources have a
+      history of accurate reporting.
     </p>
     <p class="article-text">
-      <strong>2. Examine the Author:</strong> Research the author’s background. Legitimate journalists typically have a findable track record, while anonymous or unknown authors might indicate unreliable content.
+      <strong>2. Examine the Author:</strong> Research the author’s background. Legitimate journalists typically have a
+      findable track record, while anonymous or unknown authors might indicate unreliable content.
     </p>
     <p class="article-text">
-      <strong>3. Cross-Reference:</strong> If possible, compare the story with trusted news outlets. If it’s only reported by one obscure site, it’s likely suspect.
+      <strong>3. Cross-Reference:</strong> If possible, compare the story with trusted news outlets. If it’s only
+      reported by one obscure site, it’s likely suspect.
     </p>
     <p class="article-text">
-      By applying these steps, you can roam the digital landscape with strong confidence, ensuring the information you rely on is trustworthy.
+      By applying these steps, you can roam the digital landscape with strong confidence, ensuring the information you
+      rely on is trustworthy.
     </p>
     <button class="article-back" onclick="showSection('tips')">Back to Tips</button>
   </section>
@@ -887,6 +972,11 @@
       document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
       document.getElementById('nav-' + sectionId.split('-')[0]).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Reset progress bar when changing sections
+      const progressContainer = document.getElementById('progressContainer');
+      if (progressContainer) {
+        progressContainer.style.display = 'none';
+      }
     }
 
     function showArticle(articleId) {
@@ -906,7 +996,22 @@
 
     function verifyContent() {
       const url = document.querySelector('.form-input').value;
-      if (url) alert('Verifying...\n(This is a demo - verification coming soon)');
+      if (url) {
+        const progressContainer = document.getElementById('progressContainer');
+        progressContainer.style.display = 'block';
+        // Reset and restart animation
+        const progressBar = progressContainer.querySelector('.progress-bar');
+        progressBar.style.width = '0%';
+        void progressBar.offsetWidth; // Trigger reflow
+        progressBar.style.animation = 'none';
+        setTimeout(() => {
+          progressBar.style.animation = 'gradientShift 3s ease infinite, progress 2s ease forwards';
+        }, 10);
+        setTimeout(() => {
+          alert('Verifying...\n(This is a demo - verification coming soon)');
+          progressContainer.style.display = 'none';
+        }, 2000);
+      }
     }
 
     window.addEventListener('scroll', () => {
