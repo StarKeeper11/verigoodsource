@@ -865,7 +865,8 @@
         <div class="extension-content">
           <h3 class="extension-title">Preview Extension</h3>
           <p class="extension-description">Quickly preview and verify content across platforms.</p>
-          <button class="extension-button">Get Preview</button>
+          <button class="extension-button"
+            onclick="window.open('https://drive.google.com/drive/u/0/my-drive', '_blank')">Get Preview</button>
         </div>
       </div>
     </div>
@@ -1107,7 +1108,7 @@
     }
 
     function verifyContent() {
-      const url = document.getElementById('searchbar').value;
+      const url = document.getElementById('searchbar') ? document.getElementById('searchbar').value : document.querySelector('.form-input').value;
 
       document.getElementById('submitbtn').disabled = true;
       document.getElementById('submitbtn').textContent = "Processing...";
@@ -1123,8 +1124,6 @@
       const progressBar = progressContainer.querySelector('.progress-bar');
       progressBar.style.width = '0%';
 
-      //document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
-
       fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1132,35 +1131,23 @@
       })
         .then(response => response.json())
         .then(data => {
-          //document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
           if (data.result) {
             document.getElementById('result-popup-body').innerText = data.result;
           } else {
             document.getElementById('result-popup-body').innerText = "Error: " + data.error;
-            document.getElementById('submitbtn').disabled = false;
-            document.getElementById('submitbtn').textContent = "Verify Now";
-            progressBar.width = '100%';
-            showResults();
           }
           document.getElementById('submitbtn').disabled = false;
           document.getElementById('submitbtn').textContent = "Verify Now";
-          progressBar.width = '100%';
+          progressBar.style.width = '100%';
           showResults();
         })
         .catch(error => {
-          //document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
-          document.getElementById('result-popup-body').textContent = error;
+          document.getElementById('result-popup-body').textContent = "Error: " + error.message;
           document.getElementById('submitbtn').disabled = false;
           document.getElementById('submitbtn').textContent = "Verify Now";
-          progressBar.width = '100%';
+          progressBar.style.width = '100%';
           showResults();
         });
-
-    }
-
-    function closeResults() {
-      const resultPopup = document.getElementById('resultPopup');
-      resultPopup.style.display = 'none';
     }
 
     window.addEventListener('scroll', () => {
