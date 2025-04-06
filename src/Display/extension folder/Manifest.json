@@ -1,24 +1,24 @@
 {
   "name": "TrueScan Verifier",
-  "description": "A Chrome extension to quickly verify the authenticity of URLs and text content using TrueScan's AI-powered analysis.",
+  "description": "A Chrome extension to calculate a credibility score for websites and verify text content.",
   "version": "1.0.0",
   "manifest_version": 3,
   "author": "TrueScan Team",
   "action": {
       "default_popup": "popup.html",
       "default_icon": {
-          "16": "icons/icon16.png",
-          "32": "icons/icon32.png",
-          "48": "icons/icon48.png",
-          "128": "icons/icon128.png"
+          "16": "images/cat16.jpeg",
+          "32": "images/cat32.jpeg",
+          "48": "images/cat48.jpeg",
+          "128": "images/cat128.jpeg"
       },
       "default_title": "TrueScan - Verify Content"
   },
   "icons": {
-      "16": "icons/icon16.png",
-      "32": "icons/icon32.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
+      "16": "images/cat16.jpeg",
+      "32": "images/cat32.jpeg",
+      "48": "images/cat48.jpeg",
+      "128": "images/cat128.jpeg"
   },
   "permissions": [
       "activeTab",
@@ -47,7 +47,11 @@
               "popup.html",
               "index.html",
               "styles.css",
-              "scripts/*"
+              "scripts/*",
+              "images/cat16.jpeg",
+              "images/cat32.jpeg",
+              "images/cat48.jpeg",
+              "images/cat128.jpeg"
           ],
           "matches": ["<all_urls>"]
       }
