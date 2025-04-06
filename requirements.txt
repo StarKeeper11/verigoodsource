@@ -1,9 +1,0 @@
-certifi==2025.1.31
-charset-normalizer==3.4.1
-idna==3.10
-requests==2.32.3
-urllib3==2.3.0
-beautifulsoup4==4.12.2
-pillow==10.0.0
-cairosvg==2.7.0
-openai==0.27.8

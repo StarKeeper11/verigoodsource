@@ -1,6 +1,0 @@
-
-
-Vlad: AI detection and processing
-Vlad: Web Scraping
-Marcus + Rishab: Website
-Rishab: Onrender
