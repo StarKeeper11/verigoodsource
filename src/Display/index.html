@@ -865,9 +865,7 @@
         <div class="extension-content">
           <h3 class="extension-title">Preview Extension</h3>
           <p class="extension-description">Quickly preview and verify content across platforms.</p>
-          <button class="extension-button"
-            onclick="window.open('https://drive.google.com/drive/folders/1Qpwt_YOR0kGJGvuT0z6pZpWqOr7pNoaN?usp=drive_link', '_blank')">Get
-            Preview</button>
+          <button class="extension-button">Get Preview</button>
         </div>
       </div>
     </div>
@@ -1093,38 +1091,10 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function closeResults() {
-      const resultPopup = document.getElementById('resultPopup');
-      resultPopup.style.display = 'none';
-    }
-
-    function showResults() {
-      const progressContainer = document.getElementById('progressContainer');
-      const loadButton = document.getElementById('loadButton');
-      const resultPopup = document.getElementById('resultPopup');
-
-      progressContainer.style.display = 'none';
-      loadButton.style.display = 'none';
-      resultPopup.style.display = 'block';
-    }
-
     function verifyContent() {
-      const url = document.getElementById('searchbar') ? document.getElementById('searchbar').value : document.querySelector('.form-input').value;
-
+      const url = document.getElementById('searchbar').value;
       document.getElementById('submitbtn').disabled = true;
       document.getElementById('submitbtn').textContent = "Processing...";
-
-      const progressContainer = document.getElementById('progressContainer');
-      const loadButton = document.getElementById('loadButton');
-      const resultPopup = document.getElementById('resultPopup');
-
-      progressContainer.style.display = 'block';
-      loadButton.style.display = 'block';
-      resultPopup.style.display = 'none';
-
-      const progressBar = progressContainer.querySelector('.progress-bar');
-      progressBar.style.width = '0%';
-
       fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1133,22 +1103,23 @@
         .then(response => response.json())
         .then(data => {
           if (data.result) {
-            document.getElementById('result-popup-body').innerText = data.result;
+            document.getElementById('outputish').innerText = data.result;
           } else {
-            document.getElementById('result-popup-body').innerText = "Error: " + data.error;
+            document.getElementById('outputish').innerText = "Error: " + data.error;
           }
           document.getElementById('submitbtn').disabled = false;
           document.getElementById('submitbtn').textContent = "Verify Now";
-          progressBar.style.width = '100%';
-          showResults();
         })
         .catch(error => {
-          document.getElementById('result-popup-body').textContent = "Error: " + error.message;
+          document.getElementById('outputish').textContent = error;
           document.getElementById('submitbtn').disabled = false;
           document.getElementById('submitbtn').textContent = "Verify Now";
-          progressBar.style.width = '100%';
-          showResults();
         });
+    }
+
+    function closeResults() {
+      const resultPopup = document.getElementById('resultPopup');
+      resultPopup.style.display = 'none';
     }
 
     window.addEventListener('scroll', () => {
