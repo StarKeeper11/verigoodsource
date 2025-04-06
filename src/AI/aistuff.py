@@ -161,7 +161,7 @@ def run_url(url):
             }
         )
         textresult = textresponse.json()
-        output += str("AI Text Score: " + str(textresult['score']))
+        output += str("AI Text Score: " + str(textresult))
 
         output += "---\n"    
 

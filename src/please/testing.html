@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>🦜 Polyglot - Piratical PyScript</title>
-      <link rel="stylesheet" href="https://pyscript.net/releases/2025.3.1/core.css">
-      <script type="module" src="https://pyscript.net/releases/2025.3.1/core.js"></script>
-  </head>
-  <body>
-    <h1>Polyglot 🦜 💬 🇬🇧 ➡️ 🏴‍☠️</h1>
-    <p>Translate English into Pirate speak...</p>
-    <input type="text" id="english" placeholder="Type English here..." />
-    <button py-click="translate_english">Translate</button>
-    <div id="output"></div>
-    <script type="py" src="./main.py" config="./pyscript.json"></script>
-  </body>
+<head>
+  <title id=="maintitle">URL Processor</title>
+</head>
+<body>
+  <h1>URL Processor</h1>
+  <input id="urlInput" type="text" placeholder="Enter URL">
+  <button onclick="processUrl()">Process</button>
+  <div id="result">Result will appear here</div>
+
+  <script>
+    function processUrl() {
+      const url = document.getElementById('urlInput').value;
+      document.getElementById('result').textContent = "Processing...";
+      
+      fetch('http://10.232.32.1:5000/process-url', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ url: url })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result) {
+          document.getElementById('result').textContent = data.result;
+          document.getElementById('maintitle').textContent = data.title;
+        } else {
+          document.getElementById('result').textContent = "Error: " + data.error;
+        }
+      })
+      .catch(error => {
+        document.getElementById('result').textContent = "Connection error";
+      });
+    }
+  </script>
+</body>
 </html>
