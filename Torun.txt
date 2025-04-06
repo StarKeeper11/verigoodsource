@@ -1,0 +1,1 @@
+Open TrustScan on replit and run it to scan on cloudfare website
