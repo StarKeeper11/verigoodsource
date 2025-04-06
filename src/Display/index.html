@@ -323,6 +323,11 @@
       box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
+    
+    .form-submit:disabled {
+      background: var(--gray-200);
+      cursor: not-allowed;
+    }
 
     .extensions-grid {
       display: grid;
@@ -667,7 +672,7 @@
         <label class="form-label">Enter URL</label>
         <input id="searchbar" type="text" class="form-input" placeholder="https://example.com/article">
       </div>
-      <button class="form-submit" onclick="verifyContent()">Verify Now</button>
+      <button id="submitbtn" class="form-submit" onclick="verifyContent()">Verify Now</button>
     </div>
   </section>
 
@@ -896,6 +901,8 @@
 
     function verifyContent() {
       const url = document.getElementById('searchbar').value;
+      document.getElementById('submitbtn').disabled = true;
+      document.getElementById('submitbtn').textContent = "Processing...";
       fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -908,9 +915,13 @@
         } else {
           document.getElementById('outputish').innerText = "Error: " + data.error;
         }
+        document.getElementById('submitbtn').disabled = false;
+        document.getElementById('submitbtn').textContent = "Verify Now";
       })
       .catch(error => {
         document.getElementById('outputish').textContent = error;
+        document.getElementById('submitbtn').disabled = false;
+        document.getElementById('submitbtn').textContent = "Verify Now";
       });
     }
 
