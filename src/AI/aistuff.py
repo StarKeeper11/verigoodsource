@@ -5,9 +5,9 @@
 
 
 ## Really simple stuff
+##from pyscript import document
 import requests
 import json
-from pprint import pprint
 from urllib.request import Request
 from bs4 import BeautifulSoup
 from PIL import Image
@@ -17,9 +17,8 @@ import cairosvg
 from openai import OpenAI
 
 os.environ['SIGHTENGINE_PRIVATE'] = 'LtBVMFAQUeKUkjGgfvFMfkvaUgf9QB9j'
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 client = OpenAI()
-
 
 ## Parameters for sightengine, images
 sightparams = {
@@ -28,25 +27,14 @@ sightparams = {
   'api_secret': os.getenv('SIGHTENGINE_PRIVATE'),
 }
 
-
-
-# ## Opening images and runnng them
-# aidogefile = {'media': open('Tests/aidoge.png', 'rb')}
-# realdogefile = {'media': open('Tests/realdoge.jpg', 'rb')}
-
-
 def chicken_soup(url):
-    # response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
-    # response.raise_for_status()  # Raise an error for bad status codes
-    # soup = None
-    # if url.endswith('.html'):
-    #     pprint(response)
-    #     soup = BeautifulSoup(response.text.replace(".html", ""), 'html.parser')
-    # else:
-    #     soup = BeautifulSoup(response.text, 'html.parser')
+    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
+    response.raise_for_status()  # Raise an error for bad status codes
     soup = None
-    with open("src/Main/Tests/fakeBlogPost.html") as fp:
-        soup = BeautifulSoup(fp, 'html.parser')
+    if url.endswith('.html'):
+        soup = BeautifulSoup(response.text.replace(".html", ""), 'html.parser')
+    else:
+        soup = BeautifulSoup(response.text, 'html.parser')
     return soup
 
 def extract_main_content(soup):
@@ -140,39 +128,45 @@ def check_bias_with_openai(text):
 
 def run_url(url):
 
+    # input_text = document.querySelector("#english")
+    # url = str(input_text.value)
+    # output_div = document.querySelector("#output")
+    # output_div.innerText = "yay"
+
+    output = ""
+
+    alltext = ""
+
     soup = chicken_soup(url)
 
     if soup:
-        print('---')
-        with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
-            rawText = extract_main_content(soup)
-            response = client.responses.create(
-                model = "gpt-4o",
-                instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all potential footers. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
-                input = rawText
-            )
-            #answer = json.loads(response.text)
-            file.write(response.output_text)
-            print("File write sucess!")
-            print('---')
-            print(check_bias_with_openai(response.output_text))
-            print('---')
-            textresponse = requests.post(
-                "https://api.sapling.ai/api/v1/aidetect",
-                json={
-                    "key": "G108GEIPFKTLI0SW8P1WTGZ9ZBNQOKF1",
-                    "text": rawText
-                }
-            )
-            textresult = textresponse.json()
-            print("AI Text Score: " + str(textresult['score']))
+        output += "---\n"
+        rawText = extract_main_content(soup)
+        response = client.responses.create(
+            model = "gpt-4o",
+            instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all potential footers. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
+            input = rawText
+        )
+        #answer = json.loads(response.text)
+        alltext = response.output_text
+        output += "File write success\n"
+        output += "---\n"
+        output += str(check_bias_with_openai(response.output_text))
+        output += "\n---\n"
+        textresponse = requests.post(
+            "https://api.sapling.ai/api/v1/aidetect",
+            json={
+                "key": "G108GEIPFKTLI0SW8P1WTGZ9ZBNQOKF1",
+                "text": rawText
+            }
+        )
+        textresult = textresponse.json()
+        output += str("AI Text Score: " + str(textresult['score']))
 
-        print("---")    
+        output += "---\n"    
 
         imgs = extract_images(soup, url)
         imgresults = []
-
-        pprint(imgs)
 
         for i in imgs:
             download_as_webp(i, f'src/dump/tempimg.webp')
@@ -180,12 +174,14 @@ def run_url(url):
             r = requests.post('https://api.sightengine.com/1.0/check.json', files=file, data=sightparams)
             result = json.loads(r.text)
             if result['status'] == 'success':
-                pprint(result)
                 imgresults.append(result["type"]["ai_generated"])
         
-        print('Image scores:')
-        print(imgresults)
-        print('---')
+        output += 'Image scores:\n'
+        output += str(imgresults)
+        output += "---\n"
+
+    # output_div = document.querySelector("#output")
+    # output_div.innerText = output
             
 
-run_url('https://www.opensourceshakespeare.org/views/plays/play_view.php')
+print(run_url('https://www.huffpost.com/entry/trump-timothy-haugh-nsa-firing-don-bacon_n_67f131a4e4b0b90810dcbbf5'))
