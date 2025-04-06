@@ -821,8 +821,8 @@
         <button class="load-button" id="loadButton" onclick="showResults()">Load Results</button>
       </div>
       <div class="result-popup" id="resultPopup">
-        <h3>Verification Results</h3>
-        <p>This is a demo result. In a full implementation, this would show the verification status of the URL.</p>
+        <h3 id="result-popup-title">Verification Results</h3>
+        <p id="result-popup-body">This is a demo result. In a full implementation, this would show the verification status of the URL.</p>
         <button class="result-close" onclick="closeResults()">Close</button>
       </div>
     </div>
@@ -1081,6 +1081,21 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function closeResults() {
+      const resultPopup = document.getElementById('resultPopup');
+      resultPopup.style.display = 'none';
+    }
+
+    function showResults() {
+      const progressContainer = document.getElementById('progressContainer');
+      const loadButton = document.getElementById('loadButton');
+      const resultPopup = document.getElementById('resultPopup');
+
+      progressContainer.style.display = 'none';
+      loadButton.style.display = 'none';
+      resultPopup.style.display = 'block';
+    }
+
     function verifyContent() {
       const url = document.getElementById('searchbar').value;
 
@@ -1098,6 +1113,8 @@
       const progressBar = progressContainer.querySelector('.progress-bar');
       progressBar.style.width = '0%';
 
+      document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
+
       fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -1105,16 +1122,18 @@
       })
       .then(response => response.json())
       .then(data => {
+        document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
         if (data.result) {
-          document.getElementById('outputish').innerText = data.result;
+          document.getElementById('result-popup-body').innerText = data.result;
         } else {
-          document.getElementById('outputish').innerText = "Error: " + data.error;
+          document.getElementById('result-popup-body').innerText = "Error: " + data.error;
         }
         document.getElementById('submitbtn').disabled = false;
         document.getElementById('submitbtn').textContent = "Verify Now";
       })
       .catch(error => {
-        document.getElementById('outputish').textContent = error;
+        document.getElementById('result-popup-title').innerText = "Results for " + ((((str(url)).replace('https://', '')).replace('http://', '')).split('/')[0]);
+        document.getElementById('result-popup-body').textContent = error;
         document.getElementById('submitbtn').disabled = false;
         document.getElementById('submitbtn').textContent = "Verify Now";
       });
