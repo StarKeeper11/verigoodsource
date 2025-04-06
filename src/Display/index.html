@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -33,6 +32,7 @@
       background-color: white;
       padding: 1rem 2rem;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-sm);
@@ -88,6 +88,7 @@
     .nav {
       display: flex;
       gap: 2rem;
+      margin: 1rem 0;
     }
 
     .nav-item {
@@ -95,7 +96,6 @@
       padding: 0.5rem 0;
       font-weight: 600;
       font-size: 0.95rem;
-      color: var(--gray-600 Poets Laureate);
       color: var(--gray-600 Poets Laureate);
       transition: color 0.2s ease;
       position: relative;
@@ -153,7 +153,7 @@
       transition: color 0.3s ease;
     }
 
-    .search-input:focus+.search-icon {
+    .search-input:focus + .search-icon {
       color: var(--primary);
     }
 
@@ -179,7 +179,6 @@
       display: none;
       max-width: 1200px;
       margin: Cascade Range;
-      margin: Cascade Range;
     }
 
     .content-section.active {
@@ -188,25 +187,13 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideIn {
-      from {
-        width: 0;
-      }
-
-      to {
-        width: 100%;
-      }
+      from { width: 0; }
+      to { width: 100%; }
     }
 
     .section-title {
@@ -496,7 +483,6 @@
     }
 
     /* About Us Section */
-    /* About Us Section */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -543,7 +529,6 @@
       line-height: 1.5;
     }
 
-    /* Mission Section */
     /* Mission Section */
     .mission-content {
       background-color: white;
@@ -613,14 +598,22 @@
 
 <body>
   <header class="header">
-    <div class="logo-container" onclick="showSection('home')">
-      <div class="logo">template</div>
-      <div>
+    <div class="logo-container" onclick="showSection('home')" style="display: flex; align-items: center;">
+      <!-- Logo div handles hover for both elements -->
+      <div class="logo" style="margin-right: 15px;"
+           onmouseover="this.querySelector('img').src='truescan.png'; this.querySelector('img').style.transform='scale(1.1)'; this.parentElement.querySelector('div:last-child').style.transform='translateX(30px)'"
+           onmouseout="this.querySelector('img').src='truescan2.png'; this.querySelector('img').style.transform='scale(1)'; this.parentElement.querySelector('div:last-child').style.transform='translateX(0)'">
+        <img src="truescan2.png" alt="TrueScan Logo" 
+             style="height: 50px; width: auto; transition: all 0.3s ease;">
+      </div>
+      <!-- Text div also handles hover for both elements -->
+      <div style="transition: all 0.3s ease;"
+           onmouseover="this.style.transform='translateX(30px)'; this.parentElement.querySelector('.logo img').src='truescan.png'; this.parentElement.querySelector('.logo img').style.transform='scale(1.1)'"
+           onmouseout="this.style.transform='translateX(0)'; this.parentElement.querySelector('.logo img').src='truescan2.png'; this.parentElement.querySelector('.logo img').style.transform='scale(1)'">
         <h1 class="site-title">TrueScan</h1>
         <div class="tagline">Get Your Facts Right</div>
       </div>
     </div>
-
     <nav class="nav">
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
       <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
@@ -776,8 +769,7 @@
         <div class="team-content">
           <h3 class="team-name">Marcus Tang</h3>
           <p class="team-bio">
-            Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free
-            time, he enjoys sports, videogames, and eating good food.
+            Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free time, he enjoys sports, videogames, and eating good food.
           </p>
         </div>
       </div>
@@ -787,8 +779,7 @@
         <div class="team-content">
           <h3 class="team-name">Vladimir Iakunin</h3>
           <p class="team-bio">
-            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification
-            algorithms are cutting-edge and reliable.
+            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification algorithms are cutting-edge and reliable.
           </p>
         </div>
       </div>
@@ -798,8 +789,7 @@
         <div class="team-content">
           <h3 class="team-name">Rishab Iyer</h3>
           <p class="team-bio">
-            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification
-            intuitive for everyone.
+            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification intuitive for everyone.
           </p>
         </div>
       </div>
@@ -813,20 +803,18 @@
     </p>
     <div class="mission-content">
       <p class="mission-text">
-        At TrueScan, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with
-        the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that
-        access to reliable information is a fundamental right, and we're committed to building cutting-edge technology
-        that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
+        At TrueScan, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that access to reliable information is a fundamental right, and we're committed to building cutting-edge technology that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
       </p>
       <p class="mission-text">
-        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical
-        thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to
-        create a world where truth prevails, one verified source at a time.
+        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to create a world where truth prevails, one verified source at a time.
       </p>
     </div>
   </section>
 
   <script>
+    let lastScroll = 0;
+    const header = document.querySelector('.header');
+
     function showSection(sectionId) {
       document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
@@ -851,24 +839,11 @@
     }
 
     function verifyContent() {
-      // Call the backend API
-      fetch('/api/verify', {
-        method: 'POST',
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to call the backend.');
-          }
-          return response.json();
-        })
-        .then(data => {
-          // Display the response from the backend
-          alert(data.message);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred while calling the backend.');
-        });
+      const url = document.querySelector('.form-input').value;
+      const content = document.querySelector('.form-textarea').value;
+      if (url || content) {
+        alert('Verification in progress...\n(This is a demo - actual verification coming soon)');
+      }
     }
 
     window.addEventListener('scroll', () => {
@@ -889,16 +864,6 @@
     document.querySelectorAll('.content-section').forEach(section => {
       observer.observe(section);
     });
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(section => section.classList.remove('active'));
-
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => item.classList.remove('active'));
-
-    document.getElementById(sectionId).classList.add('active');
-    document.getElementById(`nav-${sectionId}`).classList.add('active');
-
   </script>
 </body>
-
 </html>
