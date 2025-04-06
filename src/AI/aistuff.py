@@ -16,16 +16,15 @@ import os
 import cairosvg 
 from openai import OpenAI
 
-os.environ['SIGHTENGINE_PRIVATE'] = 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
-os.environ['OPENAI_API_KEY'] = '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'
-
+os.environ['SIGHTENGINE_PRIVATE'] = 'LtBVMFAQUeKUkjGgfvFMfkvaUgf9QB9j'
+os.environ['OPENAI_API_KEY'] = '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'
 client = OpenAI()
 
 
 ## Parameters for sightengine, images
 sightparams = {
   'models': 'genai',
-  'api_user': '115151825',
+  'api_user': '207914551',
   'api_secret': os.getenv('SIGHTENGINE_PRIVATE'),
 }
 
@@ -37,14 +36,17 @@ sightparams = {
 
 
 def chicken_soup(url):
-    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
-    response.raise_for_status()  # Raise an error for bad status codes
+    # response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
+    # response.raise_for_status()  # Raise an error for bad status codes
+    # soup = None
+    # if url.endswith('.html'):
+    #     pprint(response)
+    #     soup = BeautifulSoup(response.text.replace(".html", ""), 'html.parser')
+    # else:
+    #     soup = BeautifulSoup(response.text, 'html.parser')
     soup = None
-    if url.endswith('.html'):
-        pprint(response)
-        soup = BeautifulSoup(response.text.replace(".html", ""), 'html.parser')
-    else:
-        soup = BeautifulSoup(response.text, 'html.parser')
+    with open("src/Main/Tests/fakeBlogPost.html") as fp:
+        soup = BeautifulSoup(fp, 'html.parser')
     return soup
 
 def extract_main_content(soup):
@@ -158,7 +160,7 @@ def run_url(url):
             textresponse = requests.post(
                 "https://api.sapling.ai/api/v1/aidetect",
                 json={
-                    "key": "ERCNCCJS75NWG8F37705LVO0Z9M468P6",
+                    "key": "G108GEIPFKTLI0SW8P1WTGZ9ZBNQOKF1",
                     "text": rawText
                 }
             )
@@ -170,12 +172,15 @@ def run_url(url):
         imgs = extract_images(soup, url)
         imgresults = []
 
+        pprint(imgs)
+
         for i in imgs:
             download_as_webp(i, f'src/dump/tempimg.webp')
             file = {'media': open('src/dump/tempimg.webp', 'rb')}
             r = requests.post('https://api.sightengine.com/1.0/check.json', files=file, data=sightparams)
             result = json.loads(r.text)
             if result['status'] == 'success':
+                pprint(result)
                 imgresults.append(result["type"]["ai_generated"])
         
         print('Image scores:')
