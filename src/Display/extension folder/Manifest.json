@@ -1,10 +1,44 @@
 {
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
-    "version": "1.0",
-    "manifest_version": 3,
-    "action": {
-      "default_popup": "hello.html",
-      "default_icon": "aidoge.png"
-    }
-  }
+  "name": "TrueScan Verifier",
+  "description": "A Chrome extension to calculate a credibility score for websites and verify text content.",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "author": "TrueScan Team",
+  "action": {
+      "default_popup": "popup.html",
+      "default_title": "TrueScan - Verify Content"
+  },
+  "permissions": [
+      "activeTab",
+      "tabs",
+      "storage",
+      "contextMenus",
+      "notifications"
+  ],
+  "host_permissions": [
+      "https://*/*",
+      "http://*/*"
+  ],
+  "content_scripts": [
+      {
+          "matches": ["<all_urls>"],
+          "js": ["content.js"],
+          "run_at": "document_idle"
+      }
+  ],
+  "web_accessible_resources": [
+      {
+          "resources": [
+              "popup.html",
+              "index.html",
+              "styles.css",
+              "scripts/*"
+          ],
+          "matches": ["<all_urls>"]
+      }
+  ],
+  "options_page": "options.html",
+  "minimum_chrome_version": "88",
+  "homepage_url": "https://truescan.example.com",
+  "short_name": "TrueScan"
+}
