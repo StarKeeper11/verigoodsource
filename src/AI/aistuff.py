@@ -156,7 +156,17 @@ def run_url(url):
             print("File write sucess!")
             print('---')
             print(check_bias_with_openai(response.output_text))
-            
+            print('---')
+            textresponse = requests.post(
+                "https://api.sapling.ai/api/v1/aidetect",
+                json={
+                    "key": "ERCNCCJS75NWG8F37705LVO0Z9M468P6",
+                    "text": rawText
+                }
+            )
+            textresult = textresponse.json()
+            print("AI Text Score: " + str(textresult['score']))
+
         print("---")    
 
         imgs = extract_images(soup, url)
@@ -175,3 +185,4 @@ def run_url(url):
         print('---')
             
 
+run_url('https://www.huffpost.com/entry/trump-timothy-haugh-nsa-firing-don-bacon_n_67f131a4e4b0b90810dcbbf5')
