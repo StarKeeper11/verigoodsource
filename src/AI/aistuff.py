@@ -37,17 +37,15 @@ sightparams = {
 
 
 def chicken_soup(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an error for bad status codes
-        soup = None
-        if url.endswith('.html'):
-            soup = BeautifulSoup(response.text, 'html.parser')
-        else:
-            soup = BeautifulSoup(response.text, 'html.parser')
-        return soup
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
+    response.raise_for_status()  # Raise an error for bad status codes
+    soup = None
+    if url.endswith('.html'):
+        pprint(response)
+        soup = BeautifulSoup(response.text.replace(".html", ""), 'html.parser')
+    else:
+        soup = BeautifulSoup(response.text, 'html.parser')
+    return soup
 
 def extract_main_content(soup):
     main_content = soup.find('main') or soup.find('article') or soup.find('div', {'id': 'content'})
@@ -185,4 +183,4 @@ def run_url(url):
         print('---')
             
 
-run_url('https://www.huffpost.com/entry/trump-timothy-haugh-nsa-firing-don-bacon_n_67f131a4e4b0b90810dcbbf5')
+run_url('https://www.opensourceshakespeare.org/views/plays/play_view.php')
