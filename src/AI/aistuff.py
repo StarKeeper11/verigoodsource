@@ -16,11 +16,12 @@ import os
 import cairosvg 
 from openai import OpenAI
 
+OpenAI.logging = True
+
 os.environ['SIGHTENGINE_PRIVATE'] = 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 
 client = OpenAI()
-#client.api_key = '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'
 
 
 ## Parameters for sightengine, images
@@ -135,7 +136,7 @@ if soup:
             input = rawText
         )
         #answer = json.loads(response.text)
-        file.write(response.text)
+        file.write(response.output_text)
 
     imgs = extract_images(soup, url)
     imgresults = []
