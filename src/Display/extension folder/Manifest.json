@@ -32,7 +32,7 @@
       "http://*/*"
   ],
   "background": {
-      "service_worker": "background.js"
+      "service_worker": "content.js"
   },
   "content_scripts": [
       {
@@ -60,4 +60,4 @@
   "minimum_chrome_version": "88",
   "homepage_url": "https://truescan.example.com",
   "short_name": "TrueScan"
-}
+} 
