@@ -40,7 +40,11 @@ def chicken_soup(url):
     try:
         response = requests.get(url)
         response.raise_for_status()  # Raise an error for bad status codes
-        soup = BeautifulSoup(response.text, 'html.parser')
+        soup = None
+        if url.endswith('.html'):
+            soup = BeautifulSoup(response.text, 'html.parser')
+        else:
+            soup = BeautifulSoup(response.text, 'html.parser')
         return soup
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
@@ -134,39 +138,40 @@ def check_bias_with_openai(text):
 
 
 
-url = 'https://www.huffpost.com/entry/trump-timothy-haugh-nsa-firing-don-bacon_n_67f131a4e4b0b90810dcbbf5'
-soup = chicken_soup(url)
+def run_url(url):
 
-if soup:
-    print('---')
-    with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
-        rawText = extract_main_content(soup)
-        response = client.responses.create(
-            model = "gpt-4o",
-            instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all potential footers. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
-            input = rawText
-        )
-        #answer = json.loads(response.text)
-        file.write(response.output_text)
-        print("File write sucess!")
+    soup = chicken_soup(url)
+
+    if soup:
         print('---')
-        print(check_bias_with_openai(response.output_text))
-        
-    print("---")    
+        with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
+            rawText = extract_main_content(soup)
+            response = client.responses.create(
+                model = "gpt-4o",
+                instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all potential footers. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
+                input = rawText
+            )
+            #answer = json.loads(response.text)
+            file.write(response.output_text)
+            print("File write sucess!")
+            print('---')
+            print(check_bias_with_openai(response.output_text))
+            
+        print("---")    
 
-    imgs = extract_images(soup, url)
-    imgresults = []
+        imgs = extract_images(soup, url)
+        imgresults = []
 
-    for i in imgs:
-        download_as_webp(i, f'src/dump/tempimg.webp')
-        file = {'media': open('src/dump/tempimg.webp', 'rb')}
-        r = requests.post('https://api.sightengine.com/1.0/check.json', files=file, data=sightparams)
-        result = json.loads(r.text)
-        if result['status'] == 'success':
-            imgresults.append(result["type"]["ai_generated"])
-    
-    print('Image scores:')
-    print(imgresults)
-    print('---')
+        for i in imgs:
+            download_as_webp(i, f'src/dump/tempimg.webp')
+            file = {'media': open('src/dump/tempimg.webp', 'rb')}
+            r = requests.post('https://api.sightengine.com/1.0/check.json', files=file, data=sightparams)
+            result = json.loads(r.text)
+            if result['status'] == 'success':
+                imgresults.append(result["type"]["ai_generated"])
         
+        print('Image scores:')
+        print(imgresults)
+        print('---')
+            
 
