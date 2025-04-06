@@ -17,7 +17,7 @@ import cairosvg
 from openai import OpenAI
 
 os.environ['SIGHTENGINE_PRIVATE'] = 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 
 client = OpenAI()
 
@@ -37,17 +37,15 @@ sightparams = {
 
 
 def chicken_soup(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an error for bad status codes
-        soup = None
-        if url.endswith('.html'):
-            soup = BeautifulSoup(response.text, 'html.parser')
-        else:
-            soup = BeautifulSoup(response.text, 'html.parser')
-        return soup
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=10)
+    response.raise_for_status()  # Raise an error for bad status codes
+    soup = None
+    if url.endswith('.html'):
+        pprint(response)
+        soup = BeautifulSoup(response.text.replace(".html", ""), 'html.parser')
+    else:
+        soup = BeautifulSoup(response.text, 'html.parser')
+    return soup
 
 def extract_main_content(soup):
     main_content = soup.find('main') or soup.find('article') or soup.find('div', {'id': 'content'})
@@ -156,7 +154,17 @@ def run_url(url):
             print("File write sucess!")
             print('---')
             print(check_bias_with_openai(response.output_text))
-            
+            print('---')
+            textresponse = requests.post(
+                "https://api.sapling.ai/api/v1/aidetect",
+                json={
+                    "key": "ERCNCCJS75NWG8F37705LVO0Z9M468P6",
+                    "text": rawText
+                }
+            )
+            textresult = textresponse.json()
+            print("AI Text Score: " + str(textresult['score']))
+
         print("---")    
 
         imgs = extract_images(soup, url)
@@ -175,3 +183,4 @@ def run_url(url):
         print('---')
             
 
+run_url('https://www.opensourceshakespeare.org/views/plays/play_view.php')
