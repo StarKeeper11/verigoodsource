@@ -56,7 +56,7 @@ def extract_images(soup, base_url):
             images.append(full_url)
     return images
 
-def download_as_webp(url, output_path, quality=80):
+def download_as_webp(url, output_path, quality=100):
     try:
         # Ensure output directory exists
         os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
@@ -125,7 +125,7 @@ if soup:
     imageindex = 0
 
     for i in imgs:
-        download_as_webp(i, f'src/dump/tempimg{imageindex}.webp', quality=200)
+        download_as_webp(i, f'src/dump/tempimg{imageindex}.webp')
         imageindex += 1
 
     # for i in imgs:
