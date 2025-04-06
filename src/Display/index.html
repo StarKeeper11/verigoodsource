@@ -813,7 +813,7 @@
         <label class="form-label">Enter URL</label>
         <input id="searchbar" type="text" class="form-input" placeholder="https://example.com/article">
       </div>
-      <button class="form-submit" onclick="verifyContent()">Verify Now</button>
+      <button id="submitbtn" class="form-submit" onclick="verifyContent()">Verify Now</button>
       <div class="progress-load-container">
         <div class="progress-container" id="progressContainer">
           <div class="progress-bar"></div>
@@ -1083,8 +1083,21 @@
 
     function verifyContent() {
       const url = document.getElementById('searchbar').value;
+
       document.getElementById('submitbtn').disabled = true;
       document.getElementById('submitbtn').textContent = "Processing...";
+
+      const progressContainer = document.getElementById('progressContainer');
+      const loadButton = document.getElementById('loadButton');
+      const resultPopup = document.getElementById('resultPopup');
+
+      progressContainer.style.display = 'block';
+      loadButton.style.display = 'block';
+      resultPopup.style.display = 'none';
+
+      const progressBar = progressContainer.querySelector('.progress-bar');
+      progressBar.style.width = '0%';
+
       fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -1105,6 +1118,7 @@
         document.getElementById('submitbtn').disabled = false;
         document.getElementById('submitbtn').textContent = "Verify Now";
       });
+      progressBar.width = '100%';
     }
 
     function searchSources(event) {
