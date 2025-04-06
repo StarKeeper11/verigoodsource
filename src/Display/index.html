@@ -7,11 +7,8 @@
   <style>
     :root {
       --primary: #364bd3;
-      /* Purple */
       --secondary: #3681c3;
-      /* Darker Purple */
       --teal: #14B8A6;
-      /* New Secondary Color: Teal */
       --gray-100: #F8FAFC;
       --gray-200: #E2E8F0;
       --gray-400: #94A3B8;
@@ -36,7 +33,6 @@
       overflow-x: hidden;
     }
 
-    /* Header */
     .header {
       background: white;
       padding: 1.5rem 2rem;
@@ -68,22 +64,10 @@
     }
 
     .logo img {
-      height: 50px;
-      /* Change this to increase size */
-      width: auto;
-      transition: transform 0.3s ease;
-    }
-
-    /* Add this CSS rule to apply a blue filter to the image */
-    .logo img {
       height: 65px;
-      /* Increased from 50px to 65px */
       width: auto;
       transition: transform 0.3s ease;
-
-      /* Adjusted to make it blue */
     }
-
 
     .site-title {
       font-size: clamp(1.5rem, 3vw, 1.75rem);
@@ -148,7 +132,7 @@
       padding: 0.75rem 1rem 0.75rem 2.5rem;
       border-radius: var(--border-radius);
       border: 1px solid var(--gray-200);
-      background-color: white;
+      background: white;
       font-size: 0.95rem;
       transition: all 0.3s ease;
     }
@@ -190,7 +174,6 @@
       transform: translateY(-2px);
     }
 
-    /* Content Sections */
     .content-section {
       padding: 5rem 2rem;
       display: none;
@@ -220,7 +203,6 @@
       line-height: 1.7;
     }
 
-    /* Hero Section */
     .hero {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -271,7 +253,6 @@
       opacity: 0;
     }
 
-    /* Verify Section */
     .verify-form {
       max-width: 1000px;
       margin: 0 auto;
@@ -291,7 +272,6 @@
 
     .form-group {
       margin-bottom: 0;
-      /* Adjusted for grid layout */
     }
 
     .form-label {
@@ -335,7 +315,6 @@
       font-size: 1.1rem;
       cursor: pointer;
       grid-column: 1 / -1;
-      /* Span full width */
       transition: all 0.3s ease;
     }
 
@@ -344,7 +323,6 @@
       transform: translateY(-2px);
     }
 
-    /* Extensions Section */
     .extensions-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -408,7 +386,6 @@
       border-color: var(--teal);
     }
 
-    /* Pricing Section */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -522,7 +499,6 @@
       color: white;
     }
 
-    /* About Us Section */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -570,7 +546,6 @@
       line-height: 1.6;
     }
 
-    /* Mission Section */
     .mission-content {
       background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(20, 184, 166, 0.05));
       border-radius: var(--border-radius);
@@ -587,18 +562,16 @@
       margin-bottom: 2rem;
     }
 
-    .mission-highlight {
+    .mission-bold {
       color: var(--teal);
       font-weight: 600;
     }
 
-    /* Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
         transform: translateY(20px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
@@ -609,13 +582,11 @@
       from {
         width: 0;
       }
-
       to {
         width: 100%;
       }
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .header {
         padding: 1rem;
@@ -919,7 +890,6 @@
 
       .adjusted-position {
         object-position: center 30%;
-        /* Adjusted to show faces better, but only for Marcus and Vladimir */
       }
 
       .team-card:hover .team-img {
@@ -932,11 +902,9 @@
         left: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.5);
-        /* Made more transparent */
         backdrop-filter: blur(3px);
         padding: 1.5rem;
         color: rgba(255, 255, 255, 0.9);
-        /* Lighter text color */
         opacity: 0;
         transform: translateY(100%);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -964,11 +932,8 @@
         line-height: 1.6;
         margin: 0;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-        /* Added text shadow for better readability */
         font-weight: 300;
-        /* Lighter font weight */
         color: #d1d5db;
-        /* Light grey close to white */
       }
     </style>
   </section>
@@ -980,12 +945,7 @@
     </p>
     <div class="mission-content">
       <p class="mission-text">
-        At TrueScan, we’re committed to empowering all with the tools to distinguish fact from fiction in today’s complex digital world. Access to reliable information is a right, and our technology ensures fast, accurate, and accessible verification..
-      </p>
-      <p class="mission-text">
-        Through cutting-edge AI and intuitive design, we combat misinformation, foster critical thinking, and promote
-        a culture of <span class="mission-highlight">transparency and trust</span>. Our vision is a world where truth
-        prevails.
+        At <span class="mission-bold">TrueScan</span>, we’re committed to empowering all with the tools to distinguish fact from fiction in today’s complex digital world. Access to <span class="mission-bold">reliable information</span> is a right, and our technology ensures fast, accurate, and accessible verification.
       </p>
     </div>
   </section>
