@@ -2,6 +2,8 @@
 ## TODO: Make image detection (IN PROGRESS)
 ## TODO: FIND A WAY TO SCRAPE WEBSITES (IMPORTANT - NOT STARTED), split website in textual and image data
 
+
+
 ## Really simple stuff
 import requests
 import json
@@ -12,15 +14,21 @@ from PIL import Image
 from io import BytesIO
 import os
 import cairosvg 
+from openai import OpenAI
 
-## from PIL import Image
+os.environ['SIGHTENGINE_PRIVATE'] = 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
+os.environ['OPENAI_API_KEY'] = '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'
+
+client = OpenAI()
 
 ## Parameters for sightengine, images
 sightparams = {
   'models': 'genai',
   'api_user': '115151825',
-  'api_secret': 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
+  'api_secret': os.getenv('SIGHTENGINE_PRIVATE'),
 }
+
+
 
 # ## Opening images and runnng them
 # aidogefile = {'media': open('Tests/aidoge.png', 'rb')}
@@ -112,33 +120,32 @@ def download_as_webp(url, output_path, quality=100):
 #         "text": "This is sample text."
 #     }
 # )
-
-soup = chicken_soup('https://en.wikipedia.org/wiki/Fish')
+url = 'https://sapling.ai/ai-detection-apis'
+soup = chicken_soup(url)
 
 if soup:
     print('---')
     with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
-        file.write(extract_main_content(soup))
+        rawText = extract_main_content(soup)
+        response = client.responses.create(
+            model = "gpt-4oturbo",
+            instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
+            input = rawText
+        )
+        #answer = json.loads(response.text)
+        file.write(response.text)
 
-    imgs = extract_images(soup, 'https://en.wikipedia.org/wiki/Fish')
-
-    imageindex = 0
+    imgs = extract_images(soup, url)
+    imgresults = []
 
     for i in imgs:
-        download_as_webp(i, f'src/dump/tempimg{imageindex}.webp')
-        imageindex += 1
-
-    # for i in imgs:
-    #     download_image_as_webp(i, )
-        # response = requests.get(i, stream=True)
+        download_as_webp(i, f'src/dump/tempimg.webp')
+        file = {'media': open('src/dump/tempimg.webp', 'rb')}
+        r = requests.post('https://api.sightengine.com/1.0/check.json', files=file, data=sightparams)
+        result = json.loads(r.text)
+        if result['status'] == 'success':
+            imgresults.append(result["type"]["ai_generated"])
+    
+    print(imgresults)
         
-        # if 'image' in response.headers.get('Content-Type', ''):
-        #     # Save the image to a temporary file
-        #     print('---')
-        #     print("Image at url " + i)
-        #     temp_file_path = f'src/dump/temp_image_{i.split("/")[-1]}'
-        #     with open(temp_file_path, 'wb') as temp_file:
-        #         temp_file.write(response.content)
 
-        #     print(f"Image saved to {temp_file_path}")
-        #     result = cwebp(input_image=temp_file_path, output_image=temp_file_path, option=f"-q {100}")
