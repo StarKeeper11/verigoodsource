@@ -380,17 +380,12 @@
 
     .result-popup {
       display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       background: white;
       padding: 2rem;
       border-radius: var(--border-radius);
       box-shadow: var(--shadow-md);
-      width: 80%;
-      max-width: 500px;
-      z-index: 1000;
+      width: 100%;
+      margin-top: 1rem;
       animation: fadeIn 0.3s ease;
     }
 
@@ -811,7 +806,8 @@
     <div class="verify-form">
       <div class="form-group">
         <label class="form-label">Enter URL</label>
-        <input type="text" class="form-input" placeholder="https://example.com/article">
+        <input type="text" class="form-input" placeholder="https://example.com/article"
+          onkeyup="if(event.key === 'Enter') verifyContent()">
       </div>
       <button class="form-submit" onclick="verifyContent()">Verify Now</button>
       <div class="progress-load-container">
