@@ -15,15 +15,6 @@
       text-align: center;
       margin-bottom: 15px;
     }
-    .cat-image {
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .cat-image:hover {
-      transform: scale(1.1);
-    }
     h3 {
       color: #1E293B;
       font-size: 16px;
@@ -68,7 +59,6 @@
 </head>
 <body>
   <div class="header">
-    <img src="images/cat.jpeg" alt="Cat" class="cat-image" onclick="openCNN()">
     <h3>TrueScan Verifier</h3>
   </div>
   <div class="input-group">
@@ -81,10 +71,6 @@
   <div class="status" id="status"></div>
 
   <script>
-    function openCNN() {
-      chrome.tabs.create({ url: 'https://www.cnn.com' });
-    }
-
     document.getElementById('verifyBtn').addEventListener('click', function() {
       const url = document.getElementById('urlInput').value.trim();
       const text = document.getElementById('textInput').value.trim();
