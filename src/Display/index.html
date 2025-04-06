@@ -64,7 +64,7 @@
     }
 
     .logo img {
-      height: 100px; /* Increased from 65px to 85px */
+      height: 100px;
       width: auto;
       transition: transform 0.3s ease;
     }
@@ -567,24 +567,106 @@
       font-weight: 600;
     }
 
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .blog-image {
+      height: 180px;
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .blog-content {
+      padding: 2rem;
+    }
+
+    .blog-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+    }
+
+    .blog-excerpt {
+      color: var(--gray-600);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .article-content {
+      display: none;
+      padding: 3rem;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .article-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .article-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-text {
+      color: var(--gray-600);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-back {
+      background: var(--gray-200);
+      color: var(--gray-800);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .article-back:hover {
+      background: var(--teal);
+      color: white;
+    }
+
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideIn {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
+      from { width: 0; }
+      to { width: 100%; }
     }
 
     @media (max-width: 768px) {
@@ -633,7 +715,8 @@
 
       .extensions-grid,
       .pricing-grid,
-      .team-grid {
+      .team-grid,
+      .blog-grid {
         grid-template-columns: 1fr;
       }
 
@@ -641,7 +724,8 @@
         transform: none;
       }
 
-      .mission-content {
+      .mission-content,
+      .article-content {
         padding: 2rem;
       }
     }
@@ -661,11 +745,12 @@
     </div>
     <nav class="nav">
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
+      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
+      <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
       <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Scan</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
-      <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
-      <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
+      <div id="nav-blog" class="nav-item" onclick="showSection('blog')">Blog</div>
     </nav>
     <div class="actions">
       <div class="search-container">
@@ -822,13 +907,12 @@
           <h3 class="team-name">Marcus Tang</h3>
         </div>
       </div>
-
       <div class="team-card">
         <div class="team-image-container">
           <img src="img2.jpg" alt="Vladimir Iakunin" class="team-img adjusted-position">
           <div class="team-overlay">
             <p class="team-bio">
-              Vladimir  is an 8th Grader at Bullis Charter School. He currently lives in Mountain View, California. Vlad oversees our technical infrastructure. His expertise in machine learning ensures our verification
+              Vladimir is an 8th Grader at Bullis Charter School. He currently lives in Mountain View, California. Vlad oversees our technical infrastructure. His expertise in machine learning ensures our verification
               algorithms are cutting-edge and reliable.
             </p>
           </div>
@@ -837,13 +921,12 @@
           <h3 class="team-name">Vladimir Iakunin</h3>
         </div>
       </div>
-
       <div class="team-card">
         <div class="team-image-container">
           <img src="img1.jpg" alt="Rishab Iyer" class="team-img">
           <div class="team-overlay">
             <p class="team-bio">
-              Rishab  is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. Rishab crafts our user experience with a focus on simplicity and clarity. His designs make verification
+              Rishab is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. Rishab crafts our user experience with a focus on simplicity and clarity. His designs make verification
               intuitive for everyone.
             </p>
           </div>
@@ -853,14 +936,12 @@
         </div>
       </div>
     </div>
-
     <style>
       .team-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
       }
-
       .team-card {
         background-color: white;
         border-radius: 12px;
@@ -868,34 +949,28 @@
         overflow: hidden;
         transition: all 0.3s ease;
       }
-
       .team-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-md);
       }
-
       .team-image-container {
         width: 100%;
         height: 250px;
         position: relative;
         overflow: hidden;
       }
-
       .team-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
-
       .adjusted-position {
         object-position: center 30%;
       }
-
       .team-card:hover .team-img {
         transform: scale(1.05);
       }
-
       .team-overlay {
         position: absolute;
         bottom: 0;
@@ -909,24 +984,20 @@
         transform: translateY(100%);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
-
       .team-card:hover .team-overlay {
         opacity: 1;
         transform: translateY(0);
       }
-
       .team-content {
         padding: 1.5rem;
         text-align: center;
       }
-
       .team-name {
         font-size: 1.25rem;
         font-weight: 700;
         color: var(--gray-800);
         margin-bottom: 0.5rem;
       }
-
       .team-bio {
         font-size: 0.95rem;
         line-height: 1.6;
@@ -950,15 +1021,59 @@
     </div>
   </section>
 
+  <section id="blog" class="content-section">
+    <h2 class="section-title">Blog</h2>
+    <p class="section-description">
+      Stay informed with our latest insights on digital trust and verification.
+    </p>
+    <div class="blog-grid">
+      <div class="blog-card" onclick="showArticle('article1')">
+        <div class="blog-image">Post 1</div>
+        <div class="blog-content">
+          <h3 class="blog-title">How to Spot Fake News</h3>
+          <p class="blog-excerpt">Learn key techniques to identify misinformation online in just a few steps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="article1" class="article-content">
+    <h2 class="article-title">How You Can Spot Fake News</h2>
+    <p class="article-text">
+      With current-day technology, finding the truth online can be challenging. Here are some steps to spot fake news:
+    </p>
+    <p class="article-text">
+      <strong>1. Check the Source:</strong> Verify the credibility of the website or publisher. Reputable sources have a history of accurate reporting. 
+    </p>
+    <p class="article-text">
+      <strong>2. Examine the Author:</strong> Research the author’s background. Legitimate journalists typically have a findable track record, while anonymous or unknown authors might indicate unreliable content.
+    </p>
+    <p class="article-text">
+      <strong>3. Cross-Reference:</strong> If possible, compare the story with trusted news outlets. If it’s only reported by one obscure site, it’s likely suspect.
+    </p>
+    <p class="article-text">
+      By applying these steps, you can roam the digital landscape with strong confidence, ensuring the information you rely on is trustworthy.
+    </p>
+    <button class="article-back" onclick="showSection('blog')">Back to Blog</button>
+  </section>
+
   <script>
     let lastScroll = 0;
     const header = document.querySelector('.header');
 
     function showSection(sectionId) {
-      document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+      document.querySelectorAll('.content-section, .article-content').forEach(section => section.classList.remove('active'));
       document.getElementById(sectionId).classList.add('active');
       document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-      document.getElementById('nav-' + sectionId).classList.add('active');
+      document.getElementById('nav-' + sectionId.split('-')[0]).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showArticle(articleId) {
+      document.querySelectorAll('.content-section, .article-content').forEach(section => section.classList.remove('active'));
+      document.getElementById(articleId).classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      document.getElementById('nav-blog').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -990,7 +1105,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.content-section').forEach(section => observer.observe(section));
+    document.querySelectorAll('.content-section, .article-content').forEach(section => observer.observe(section));
   </script>
 </body>
 
