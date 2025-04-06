@@ -16,8 +16,6 @@ import os
 import cairosvg 
 from openai import OpenAI
 
-OpenAI.logging = True
-
 os.environ['SIGHTENGINE_PRIVATE'] = 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
 os.environ['OPENAI_API_KEY'] = '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'
 
