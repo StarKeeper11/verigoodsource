@@ -777,17 +777,13 @@
 
   <section id="verify" class="content-section">
     <h2 class="section-title">Verify Any Source</h2>
-    <p class="section-description">
+    <p id="outputish" class="section-description">
       Instantly check the reliability of URLs, text, or documents with our powerful AI tools.
     </p>
     <div class="verify-form">
       <div class="form-group">
         <label class="form-label">Enter URL</label>
-        <input type="text" class="form-input" placeholder="https://example.com/article">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Or Paste Content</label>
-        <textarea class="form-textarea" rows="5" placeholder="Paste text to verify..."></textarea>
+        <input id="searchbar" type="text" class="form-input" placeholder="https://example.com/article">
       </div>
       <button class="form-submit" onclick="verifyContent()">Verify Now</button>
     </div>
@@ -1077,17 +1073,32 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function searchSources(event) {
-      if (event.key === 'Enter') {
-        const query = event.target.value.trim();
-        if (query) alert(`Searching for: ${query}\n(This is a demo - search coming soon)`);
-      }
+    function verifyContent() {
+      const url = document.getElementById('searchbar').value;
+      fetch('https://d57fbf69-d774-4513-9678-0b7079dcbe5a-00-rdg1s00fx947.riker.replit.dev/process-url', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ url: url })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result) {
+          document.getElementById('outputish').innerText = data.result;
+        } else {
+          document.getElementById('outputish').innerText = "Error: " + data.error;
+        }
+      })
+      .catch(error => {
+        document.getElementById('outputish').textContent = error;
+      });
     }
 
-    function verifyContent() {
-      const url = document.querySelector('.form-input').value;
-      const content = document.querySelector('.form-textarea').value;
-      if (url || content) alert('Verifying...\n(This is a demo - verification coming soon)');
+    function searchSources(event) {
+      if (event) {
+        const query = event.target.value.trim();
+        showSection("verify");
+        document.getElementById('searchbar').value = query;
+      }
     }
 
     window.addEventListener('scroll', () => {
