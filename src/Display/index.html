@@ -3,17 +3,23 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4F46E5;
-      --secondary: #7C3AED;
+      --primary: #364bd3;
+      /* Purple */
+      --secondary: #3681c3;
+      /* Darker Purple */
+      --teal: #14B8A6;
+      /* New Secondary Color: Teal */
       --gray-100: #F8FAFC;
       --gray-200: #E2E8F0;
       --gray-400: #94A3B8;
-      --gray-600: #64748B;
+      --gray-600: #475569;
       --gray-800: #1E293B;
-      --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.1);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.1);
+      --border-radius: 12px;
     }
 
     * {
@@ -23,15 +29,17 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: #f5f7fa;
-      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--gray-100);
+      line-height: 1.6;
+      color: var(--gray-800);
       overflow-x: hidden;
     }
 
+    /* Header */
     .header {
-      background-color: white;
-      padding: 1rem 2rem;
+      background: white;
+      padding: 1.5rem 2rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -50,30 +58,36 @@
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 1rem;
       cursor: pointer;
       transition: transform 0.2s ease;
     }
 
     .logo-container:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
-    .logo {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      font-size: 1.25rem;
-      font-weight: 700;
-      height: 40px;
-      width: 40px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
+    .logo img {
+      height: 50px;
+      /* Change this to increase size */
+      width: auto;
+      transition: transform 0.3s ease;
     }
+
+    /* Add this CSS rule to apply a blue filter to the image */
+    .logo img {
+      height: 65px;
+      /* Increased from 50px to 65px */
+      width: auto;
+      transition: transform 0.3s ease;
+
+      /* Adjusted to make it blue */
+    }
+
 
     .site-title {
-      font-size: clamp(1.25rem, 3vw, 1.5rem);
-      font-weight: 800;
+      font-size: clamp(1.5rem, 3vw, 1.75rem);
+      font-weight: 700;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
@@ -81,29 +95,29 @@
     }
 
     .tagline {
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       color: var(--gray-600);
       font-weight: 500;
     }
 
     .nav {
       display: flex;
-      gap: 2rem;
-      margin: 1rem 0;
+      gap: 2.5rem;
     }
 
     .nav-item {
       cursor: pointer;
       padding: 0.5rem 0;
       font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--gray-600 Poets Laureate);
-      transition: color 0.2s ease;
+      font-size: 1rem;
+      color: var(--gray-600);
+      transition: color 0.3s ease, transform 0.2s ease;
       position: relative;
     }
 
     .nav-item:hover {
-      color: var(--primary);
+      color: var(--teal);
+      transform: translateY(-2px);
     }
 
     .nav-item.active:after {
@@ -111,9 +125,9 @@
       position: absolute;
       width: 100%;
       height: 3px;
-      bottom: -4px;
+      bottom: -6px;
       left: 0;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--primary), var(--teal));
       border-radius: 3px;
       animation: slideIn 0.3s ease;
     }
@@ -121,27 +135,27 @@
     .actions {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .search-container {
       position: relative;
+      width: 250px;
     }
 
     .search-input {
-      padding: 0.75rem 1rem 0.75rem 2.75rem;
-      border-radius: 12px;
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border-radius: var(--border-radius);
       border: 1px solid var(--gray-200);
-      background-color: var(--gray-100);
-      width: 200px;
-      font-size: 0.9rem;
+      background-color: white;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
     }
 
     .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      width: 240px;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
       outline: none;
     }
 
@@ -151,21 +165,22 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--gray-400);
+      font-size: 1.2rem;
       transition: color 0.3s ease;
     }
 
     .search-input:focus+.search-icon {
-      color: var(--primary);
+      color: var(--teal);
     }
 
     .cta-button {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--primary), var(--teal));
       color: white;
       border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 12px;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--border-radius);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -175,11 +190,12 @@
       transform: translateY(-2px);
     }
 
+    /* Content Sections */
     .content-section {
-      padding: 4rem 2rem;
+      padding: 5rem 2rem;
       display: none;
-      max-width: 1200px;
-      margin: Cascade Range;
+      max-width: 1280px;
+      margin: 0 auto;
     }
 
     .content-section.active {
@@ -187,6 +203,396 @@
       animation: fadeIn 0.5s ease;
     }
 
+    .section-title {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--gray-800);
+      text-align: center;
+    }
+
+    .section-description {
+      text-align: center;
+      color: var(--gray-600);
+      font-size: 1.2rem;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.25rem, 6vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-image {
+      background: linear-gradient(135deg, var(--gray-200), var(--gray-100));
+      height: 450px;
+      border-radius: var(--border-radius);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-image:after {
+      content: "Interactive Demo Coming Soon";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--gray-600);
+      font-size: 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-image:hover:after {
+      opacity: 0;
+    }
+
+    /* Verify Section */
+    .verify-form {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 3rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .verify-form:hover {
+      transform: translateY(-5px);
+    }
+
+    .form-group {
+      margin-bottom: 0;
+      /* Adjusted for grid layout */
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--gray-800);
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--gray-200);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+      outline: none;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 200px;
+    }
+
+    .form-submit {
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      grid-column: 1 / -1;
+      /* Span full width */
+      transition: all 0.3s ease;
+    }
+
+    .form-submit:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    /* Extensions Section */
+    .extensions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .extension-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .extension-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .extension-image {
+      height: 180px;
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .extension-content {
+      padding: 2rem;
+    }
+
+    .extension-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--gray-800);
+    }
+
+    .extension-description {
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+
+    .extension-button {
+      background: white;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .extension-button:hover {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--teal);
+      transform: scale(1.03);
+    }
+
+    .pricing-header {
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+      border-bottom: 1px solid var(--gray-200);
+      text-align: center;
+    }
+
+    .pricing-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--gray-800);
+    }
+
+    .pricing-amount {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--gray-800);
+      margin: 0.5rem 0;
+    }
+
+    .pricing-period {
+      color: var(--gray-600);
+      font-size: 1rem;
+    }
+
+    .pricing-features {
+      padding: 2rem;
+      flex-grow: 1;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: var(--gray-800);
+      font-size: 1rem;
+    }
+
+    .feature-item:before {
+      content: "✓";
+      color: var(--teal);
+      font-weight: bold;
+      margin-right: 0.75rem;
+    }
+
+    .pricing-footer {
+      padding: 2rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .pricing-button {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-button.primary {
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      color: white;
+      border: none;
+    }
+
+    .pricing-button.secondary {
+      background: white;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+    }
+
+    .pricing-button:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .pricing-button.secondary:hover {
+      background: var(--teal);
+      color: white;
+    }
+
+    /* About Us Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .team-image {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, var(--gray-200), var(--gray-100));
+      display: grid;
+      place-items: center;
+      color: var(--gray-600);
+      font-size: 1.2rem;
+    }
+
+    .team-content {
+      padding: 2rem;
+    }
+
+    .team-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+    }
+
+    .team-bio {
+      color: var(--gray-600);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Mission Section */
+    .mission-content {
+      background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(20, 184, 166, 0.05));
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      box-shadow: var(--shadow-md);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .mission-text {
+      color: var(--gray-600);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .mission-highlight {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -209,361 +615,6 @@
       }
     }
 
-    .section-title {
-      font-size: clamp(2rem, 5vw, 2.5rem);
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      color: var(--gray-800);
-      text-align: center;
-    }
-
-    .section-description {
-      text-align: center;
-      color: var(--gray-600);
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      line-height: 1.6;
-    }
-
-    /* Hero Section */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      margin-bottom: 4rem;
-    }
-
-    .hero-title {
-      font-size: clamp(2rem, 6vw, 3rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-description {
-      font-size: 1.2rem;
-      color: var(--gray-600);
-      margin-bottom: 2rem;
-    }
-
-    .hero-image {
-      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-      height: 400px;
-      border-radius: 12px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image:after {
-      content: "Interactive Demo Coming Soon";
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      color: var(--gray-400);
-      font-size: 1.2rem;
-      background: rgba(255, 255, 255, 0.8);
-      transition: opacity 0.3s ease;
-    }
-
-    .hero-image:hover:after {
-      opacity: 0;
-    }
-
-    /* Verify Section */
-    .verify-form {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.3s ease;
-    }
-
-    .verify-form:hover {
-      transform: translateY(-5px);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--gray-800);
-    }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--gray-200);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      resize: vertical;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      outline: none;
-    }
-
-    .form-submit {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    .form-submit:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    /* Extensions Section */
-    .extensions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .extension-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-    }
-
-    .extension-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .extension-image {
-      height: 160px;
-      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-      display: grid;
-      place-items: center;
-      color: var(--gray-400);
-      position: relative;
-    }
-
-    .extension-content {
-      padding: 1.5rem;
-    }
-
-    .extension-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--gray-800);
-    }
-
-    .extension-description {
-      color: var(--gray-600);
-      margin-bottom: 1.5rem;
-    }
-
-    .extension-button {
-      background-color: var(--gray-100);
-      color: var(--primary);
-      border: 1px solid var(--gray-200);
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    .extension-button:hover {
-      background-color: #EEF2FF;
-      border-color: #C7D2FE;
-    }
-
-    /* Pricing Section */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .pricing-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .pricing-card.featured {
-      border: 2px solid var(--primary);
-      transform: scale(1.05);
-    }
-
-    .pricing-header {
-      padding: 1.5rem;
-      background-color: var(--gray-100);
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    .pricing-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--gray-800);
-    }
-
-    .pricing-amount {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--gray-800);
-      margin: 1rem 0 0.5rem;
-    }
-
-    .pricing-features {
-      padding: 1.5rem;
-      flex-grow: 1;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
-      color: var(--gray-800);
-    }
-
-    .feature-item:before {
-      content: "✓";
-      color: var(--primary);
-      font-weight: bold;
-      margin-right: 0.5rem;
-    }
-
-    .pricing-footer {
-      padding: 1.5rem;
-      border-top: 1px solid var(--gray-200);
-    }
-
-    .pricing-button {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .pricing-button.primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border: none;
-    }
-
-    .pricing-button.secondary {
-      background-color: white;
-      color: var(--primary);
-      border: 1px solid #C7D2FE;
-    }
-
-    /* About Us Section */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .team-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .team-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .team-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-      display: grid;
-      place-items: center;
-      color: var(--gray-400);
-    }
-
-    .team-content {
-      padding: 1.5rem;
-    }
-
-    .team-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--gray-800);
-      margin-bottom: 0.75rem;
-    }
-
-    .team-bio {
-      color: var(--gray-600);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    /* Mission Section */
-    .mission-content {
-      background-color: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .mission-text {
-      color: var(--gray-600);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .mission-highlight {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
     /* Responsive Design */
     @media (max-width: 768px) {
       .header {
@@ -574,26 +625,39 @@
 
       .nav {
         width: 100%;
-        justify-content: space-around;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1rem;
       }
 
       .actions {
         width: 100%;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         flex-direction: column;
+        gap: 1rem;
       }
 
-      .search-input {
+      .search-container {
         width: 100%;
       }
 
       .hero {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
       }
 
       .hero-image {
         height: 300px;
+      }
+
+      .verify-form {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+
+      .form-submit {
+        grid-column: auto;
       }
 
       .extensions-grid,
@@ -605,39 +669,36 @@
       .pricing-card.featured {
         transform: none;
       }
+
+      .mission-content {
+        padding: 2rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <header class="header">
-    <div class="logo-container" onclick="showSection('home')" style="display: flex; align-items: center;">
-      <!-- Logo div handles hover for both elements -->
-      <div class="logo" style="margin-right: 15px;"
-        onmouseover="this.querySelector('img').src='truescan.png'; this.querySelector('img').style.transform='scale(1.1)'; this.parentElement.querySelector('div:last-child').style.transform='translateX(30px)'"
-        onmouseout="this.querySelector('img').src='truescan2.png'; this.querySelector('img').style.transform='scale(1)'; this.parentElement.querySelector('div:last-child').style.transform='translateX(0)'">
-        <img src="truescan2.png" alt="TrueScan Logo" style="height: 50px; width: auto; transition: all 0.3s ease;">
+    <div class="logo-container" onclick="showSection('home')">
+      <div class="logo">
+        <img src="truescan2.png" alt="TrueScan Logo">
       </div>
-      <!-- Text div also handles hover for both elements -->
-      <div style="transition: all 0.3s ease;"
-        onmouseover="this.style.transform='translateX(30px)'; this.parentElement.querySelector('.logo img').src='truescan.png'; this.parentElement.querySelector('.logo img').style.transform='scale(1.1)'"
-        onmouseout="this.style.transform='translateX(0)'; this.parentElement.querySelector('.logo img').src='truescan2.png'; this.parentElement.querySelector('.logo img').style.transform='scale(1)'">
+      <div>
         <h1 class="site-title">TrueScan</h1>
-        <div class="tagline">Get Your Facts Right</div>
+        <div class="tagline">Trust is the Standard</div>
       </div>
     </div>
     <nav class="nav">
       <div id="nav-home" class="nav-item active" onclick="showSection('home')">Home</div>
-      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Verify</div>
+      <div id="nav-verify" class="nav-item" onclick="showSection('verify')">Scan</div>
       <div id="nav-extensions" class="nav-item" onclick="showSection('extensions')">Extensions</div>
       <div id="nav-pricing" class="nav-item" onclick="showSection('pricing')">Pricing</div>
       <div id="nav-about" class="nav-item" onclick="showSection('about')">About Us</div>
       <div id="nav-mission" class="nav-item" onclick="showSection('mission')">Mission</div>
     </nav>
-
     <div class="actions">
       <div class="search-container">
-        <span class="search-icon">⌕</span>
+        <span class="search-icon">🔍</span>
         <input type="text" class="search-input" placeholder="Search sources..." onkeyup="searchSources(event)">
       </div>
       <button class="cta-button" onclick="showSection('verify')">Get Started</button>
@@ -647,10 +708,10 @@
   <section id="home" class="content-section active">
     <div class="hero">
       <div class="hero-content">
-        <h2 class="hero-title">Verify information with just one click</h2>
+        <h2 class="hero-title">Verify a sites integrity with one click</h2>
         <p class="hero-description">
-          TrueScan helps you verify the authenticity of information from any source.
-          Our powerful AI analyzes content across the web to give you confidence in what you read.
+          TrueScan empowers you to verify the authenticity of any source. Our AI-driven technology scans the web to
+          ensure you can trust what you read.
         </p>
         <button class="cta-button" onclick="showSection('verify')">Try it Now</button>
       </div>
@@ -661,7 +722,7 @@
   <section id="verify" class="content-section">
     <h2 class="section-title">Verify Any Source</h2>
     <p class="section-description">
-      Enter a URL, paste content, or upload a document to check for authenticity and reliability.
+      Instantly check the reliability of URLs, text, or documents with our powerful AI tools.
     </p>
     <div class="verify-form">
       <div class="form-group">
@@ -669,8 +730,8 @@
         <input type="text" class="form-input" placeholder="https://example.com/article">
       </div>
       <div class="form-group">
-        <label class="form-label">Or paste content</label>
-        <textarea class="form-textarea" rows="5" placeholder="Paste the text content you want to verify..."></textarea>
+        <label class="form-label">Or Paste Content</label>
+        <textarea class="form-textarea" rows="5" placeholder="Paste text to verify..."></textarea>
       </div>
       <button class="form-submit" onclick="verifyContent()">Verify Now</button>
     </div>
@@ -679,14 +740,14 @@
   <section id="extensions" class="content-section">
     <h2 class="section-title">Browser Extensions</h2>
     <p class="section-description">
-      Install our browser extensions to verify information as you browse.
+      Seamlessly verify content as you browse with our extensions.
     </p>
     <div class="extensions-grid">
       <div class="extension-card">
         <div class="extension-image">Chrome</div>
         <div class="extension-content">
           <h3 class="extension-title">Chrome Extension</h3>
-          <p class="extension-description">Verify content directly within Chrome.</p>
+          <p class="extension-description">Verify content directly in Chrome.</p>
           <button class="extension-button">Add to Chrome</button>
         </div>
       </div>
@@ -712,7 +773,7 @@
   <section id="pricing" class="content-section">
     <h2 class="section-title">Simple Pricing</h2>
     <p class="section-description">
-      Choose the plan that fits your needs.
+      Choose a plan that fits your needs.
     </p>
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -773,66 +834,160 @@
   <section id="about" class="content-section">
     <h2 class="section-title">About Us</h2>
     <p class="section-description">
-      Meet the team behind TrueScan - dedicated to fighting misinformation and promoting the truth.
+      Meet the team dedicated to fighting misinformation with TrueScan.
     </p>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-image">
-          <img src="img2.jpg" alt="Marcus Tang" style="width:100%; height:100%; object-fit:cover;">
+        <div class="team-image-container">
+          <img src="img3.jpg" alt="Marcus Tang" class="team-img adjusted-position">
+          <div class="team-overlay">
+            <p class="team-bio">
+              Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free
+              time, he enjoys sports, videogames, and eating good food.
+            </p>
+          </div>
         </div>
         <div class="team-content">
           <h3 class="team-name">Marcus Tang</h3>
-          <p class="team-bio">
-            Marcus is an 8th Grader at Bullis Charter School. He currently lives in Los Altos, California. In his free
-            time, he enjoys sports, videogames, and eating good food.
-          </p>
         </div>
       </div>
 
       <div class="team-card">
-        <div class="team-image">
-          <img src="img3.jpg" alt="Vladimir Iakunin" style="width:100%; height:100%; object-fit:cover;">
+        <div class="team-image-container">
+          <img src="img2.jpg" alt="Vladimir Iakunin" class="team-img adjusted-position">
+          <div class="team-overlay">
+            <p class="team-bio">
+              Vladimir oversees our technical infrastructure. His expertise in machine learning ensures our verification
+              algorithms are cutting-edge and reliable.
+            </p>
+          </div>
         </div>
         <div class="team-content">
           <h3 class="team-name">Vladimir Iakunin</h3>
-          <p class="team-bio">
-            Jane oversees our technical infrastructure. Her expertise in machine learning ensures our verification
-            algorithms are cutting-edge and reliable.
-          </p>
         </div>
       </div>
 
       <div class="team-card">
-        <div class="team-image">
-          <img src="img1.jpg" alt="Rishab Iyer" style="width:100%; height:100%; object-fit:cover;">
+        <div class="team-image-container">
+          <img src="img1.jpg" alt="Rishab Iyer" class="team-img">
+          <div class="team-overlay">
+            <p class="team-bio">
+              Rishab crafts our user experience with a focus on simplicity and clarity. His designs make verification
+              intuitive for everyone.
+            </p>
+          </div>
         </div>
         <div class="team-content">
           <h3 class="team-name">Rishab Iyer</h3>
-          <p class="team-bio">
-            Alex crafts our user experience with a focus on simplicity and clarity. His designs make verification
-            intuitive for everyone.
-          </p>
         </div>
       </div>
     </div>
+
+    <style>
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .team-card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .team-image-container {
+        width: 100%;
+        height: 250px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .team-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .adjusted-position {
+        object-position: center 30%;
+        /* Adjusted to show faces better, but only for Marcus and Vladimir */
+      }
+
+      .team-card:hover .team-img {
+        transform: scale(1.05);
+      }
+
+      .team-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.5);
+        /* Made more transparent */
+        backdrop-filter: blur(3px);
+        padding: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        /* Lighter text color */
+        opacity: 0;
+        transform: translateY(100%);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .team-card:hover .team-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .team-content {
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .team-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--gray-800);
+        margin-bottom: 0.5rem;
+      }
+
+      .team-bio {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        /* Added text shadow for better readability */
+        font-weight: 300;
+        /* Lighter font weight */
+        color: #d1d5db;
+        /* Light grey close to white */
+      }
+    </style>
   </section>
 
   <section id="mission" class="content-section">
     <h2 class="section-title">Our Mission</h2>
     <p class="section-description">
-      We're on a journey to make the digital world a more truthful place.
+      Building a more truthful digital world, one verification at a time.
     </p>
     <div class="mission-content">
       <p class="mission-text">
-        At TrueScan, our mission is to <span class="mission-highlight">empower individuals and organizations</span> with
-        the tools to distinguish fact from fiction in an increasingly complex information landscape. We believe that
-        access to reliable information is a fundamental right, and we're committed to building cutting-edge technology
-        that makes verification <span class="mission-highlight">fast, accurate, and accessible</span> to everyone.
+        At TrueScan, we’re committed to <span class="mission-highlight">empowering everyone</span> with tools to
+        distinguish fact from fiction in today’s complex digital landscape. Reliable information is a right, and our
+        technology ensures verification is <span class="mission-highlight">fast, accurate, and accessible</span>.
       </p>
       <p class="mission-text">
-        Through innovative AI solutions and user-friendly interfaces, we aim to combat misinformation, promote critical
-        thinking, and foster a culture of <span class="mission-highlight">transparency and trust</span>. Our goal is to
-        create a world where truth prevails, one verified source at a time.
+        Through cutting-edge AI and intuitive design, we combat misinformation, foster critical thinking, and promote
+        a culture of <span class="mission-highlight">transparency and trust</span>. Our vision is a world where truth
+        prevails.
       </p>
     </div>
   </section>
@@ -842,34 +997,24 @@
     const header = document.querySelector('.header');
 
     function showSection(sectionId) {
-      document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-      });
+      document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
       document.getElementById(sectionId).classList.add('active');
-
-      document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-      });
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
       document.getElementById('nav-' + sectionId).classList.add('active');
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function searchSources(event) {
       if (event.key === 'Enter') {
         const query = event.target.value.trim();
-        if (query) {
-          alert(`Searching for: ${query}\n(This is a demo - actual search functionality coming soon)`);
-        }
+        if (query) alert(`Searching for: ${query}\n(This is a demo - search coming soon)`);
       }
     }
 
     function verifyContent() {
       const url = document.querySelector('.form-input').value;
       const content = document.querySelector('.form-textarea').value;
-      if (url || content) {
-        alert('Verification in progress...\n(This is a demo - actual verification coming soon)');
-      }
+      if (url || content) alert('Verifying...\n(This is a demo - verification coming soon)');
     }
 
     window.addEventListener('scroll', () => {
@@ -887,9 +1032,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.content-section').forEach(section => {
-      observer.observe(section);
-    });
+    document.querySelectorAll('.content-section').forEach(section => observer.observe(section));
   </script>
 </body>
 
