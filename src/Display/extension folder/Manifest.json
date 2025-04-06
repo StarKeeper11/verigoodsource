@@ -6,19 +6,7 @@
   "author": "TrueScan Team",
   "action": {
       "default_popup": "popup.html",
-      "default_icon": {
-          "16": "images/cat16.jpeg",
-          "32": "images/cat32.jpeg",
-          "48": "images/cat48.jpeg",
-          "128": "images/cat128.jpeg"
-      },
       "default_title": "TrueScan - Verify Content"
-  },
-  "icons": {
-      "16": "images/cat16.jpeg",
-      "32": "images/cat32.jpeg",
-      "48": "images/cat48.jpeg",
-      "128": "images/cat128.jpeg"
   },
   "permissions": [
       "activeTab",
@@ -31,9 +19,6 @@
       "https://*/*",
       "http://*/*"
   ],
-  "background": {
-      "service_worker": "background.js"
-  },
   "content_scripts": [
       {
           "matches": ["<all_urls>"],
@@ -47,11 +32,7 @@
               "popup.html",
               "index.html",
               "styles.css",
-              "scripts/*",
-              "images/cat16.jpeg",
-              "images/cat32.jpeg",
-              "images/cat48.jpeg",
-              "images/cat128.jpeg"
+              "scripts/*"
           ],
           "matches": ["<all_urls>"]
       }
