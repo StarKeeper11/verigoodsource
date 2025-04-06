@@ -264,6 +264,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
+      position: relative;
     }
 
     .verify-form:hover {
@@ -317,7 +318,7 @@
     }
 
     .progress-container {
-      width: 100%;
+      width: 70%;
       height: 20px;
       background: var(--gray-200);
       border-radius: 10px;
@@ -350,6 +351,75 @@
           rgba(255, 255, 255, 0.2) 10px,
           transparent 10px,
           transparent 20px);
+    }
+
+    .load-button {
+      width: 25%;
+      background: var(--gray-200);
+      color: var(--gray-800);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none;
+    }
+
+    .load-button:hover {
+      background: var(--teal);
+      color: white;
+    }
+
+    .progress-load-container {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .result-popup {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      width: 80%;
+      max-width: 500px;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .result-popup h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+    }
+
+    .result-popup p {
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+
+    .result-close {
+      background: var(--gray-200);
+      color: var(--gray-800);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .result-close:hover {
+      background: var(--teal);
+      color: white;
     }
 
     @keyframes gradientShift {
@@ -665,6 +735,18 @@
         grid-column: auto;
       }
 
+      .progress-container {
+        width: 100%;
+      }
+
+      .progress-load-container {
+        flex-direction: column;
+      }
+
+      .load-button {
+        width: 100%;
+      }
+
       .extensions-grid,
       .team-grid,
       .tips-grid {
@@ -732,8 +814,16 @@
         <input type="text" class="form-input" placeholder="https://example.com/article">
       </div>
       <button class="form-submit" onclick="verifyContent()">Verify Now</button>
-      <div class="progress-container" id="progressContainer">
-        <div class="progress-bar"></div>
+      <div class="progress-load-container">
+        <div class="progress-container" id="progressContainer">
+          <div class="progress-bar"></div>
+        </div>
+        <button class="load-button" id="loadButton" onclick="showResults()">Load Results</button>
+      </div>
+      <div class="result-popup" id="resultPopup">
+        <h3>Verification Results</h3>
+        <p>This is a demo result. In a full implementation, this would show the verification status of the URL.</p>
+        <button class="result-close" onclick="closeResults()">Close</button>
       </div>
     </div>
   </section>
@@ -972,10 +1062,14 @@
       document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
       document.getElementById('nav-' + sectionId.split('-')[0]).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Reset progress bar when changing sections
+      // Reset progress bar and results when changing sections
       const progressContainer = document.getElementById('progressContainer');
-      if (progressContainer) {
+      const loadButton = document.getElementById('loadButton');
+      const resultPopup = document.getElementById('resultPopup');
+      if (progressContainer && loadButton && resultPopup) {
         progressContainer.style.display = 'none';
+        loadButton.style.display = 'none';
+        resultPopup.style.display = 'none';
       }
     }
 
@@ -998,7 +1092,13 @@
       const url = document.querySelector('.form-input').value;
       if (url) {
         const progressContainer = document.getElementById('progressContainer');
+        const loadButton = document.getElementById('loadButton');
+        const resultPopup = document.getElementById('resultPopup');
+
         progressContainer.style.display = 'block';
+        loadButton.style.display = 'block';
+        resultPopup.style.display = 'none';
+
         // Reset and restart animation
         const progressBar = progressContainer.querySelector('.progress-bar');
         progressBar.style.width = '0%';
@@ -1007,11 +1107,22 @@
         setTimeout(() => {
           progressBar.style.animation = 'gradientShift 3s ease infinite, progress 2s ease forwards';
         }, 10);
-        setTimeout(() => {
-          alert('Verifying...\n(This is a demo - verification coming soon)');
-          progressContainer.style.display = 'none';
-        }, 2000);
       }
+    }
+
+    function showResults() {
+      const progressContainer = document.getElementById('progressContainer');
+      const loadButton = document.getElementById('loadButton');
+      const resultPopup = document.getElementById('resultPopup');
+
+      progressContainer.style.display = 'none';
+      loadButton.style.display = 'none';
+      resultPopup.style.display = 'block';
+    }
+
+    function closeResults() {
+      const resultPopup = document.getElementById('resultPopup');
+      resultPopup.style.display = 'none';
     }
 
     window.addEventListener('scroll', () => {
