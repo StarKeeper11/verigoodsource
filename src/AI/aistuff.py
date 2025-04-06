@@ -16,8 +16,8 @@ import os
 import cairosvg 
 from openai import OpenAI
 
-os.environ['SIGHTENGINE_PRIVATE'] = 'LtBVMFAQUeKUkjGgfvFMfkvaUgf9QB9j'
-os.environ['OPENAI_API_KEY'] = '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'
+# os.environ['SIGHTENGINE_PRIVATE'] = 'LtBVMFAQUeKUkjGgfvFMfkvaUgf9QB9j'
+# os.environ['OPENAI_API_KEY'] = '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'
 client = OpenAI()
 
 
