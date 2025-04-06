@@ -36,6 +36,7 @@
           "popup.html",
           "index.html",
           "styles.css",
+          "scripts/popup.js",
           "scripts/*",
           "images/*"
         ],
@@ -49,4 +50,4 @@
     "minimum_chrome_version": "88",
     "homepage_url": "https://truescan.example.com",
     "short_name": "TrueScan"
-  }
+}
