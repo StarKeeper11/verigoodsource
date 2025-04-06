@@ -17,9 +17,11 @@ import cairosvg
 from openai import OpenAI
 
 os.environ['SIGHTENGINE_PRIVATE'] = 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 
 client = OpenAI()
+#client.api_key = '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'
+
 
 ## Parameters for sightengine, images
 sightparams = {
@@ -128,7 +130,7 @@ if soup:
     with open('src/AI/output.txt', 'w', encoding='utf-8') as file:
         rawText = extract_main_content(soup)
         response = client.responses.create(
-            model = "gpt-4oturbo",
+            model = "gpt-4o",
             instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
             input = rawText
         )
