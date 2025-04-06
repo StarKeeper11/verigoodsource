@@ -17,7 +17,7 @@ import cairosvg
 from openai import OpenAI
 
 os.environ['SIGHTENGINE_PRIVATE'] = 'nNF32F8fSoNvH5xKjEdsXb3KmjmwSaAN'
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 
 client = OpenAI()
 
@@ -113,15 +113,28 @@ def download_as_webp(url, output_path, quality=100):
         print(f"Error: {e}")
         return False
 
-# ## Sapling AI text
-# response = requests.post(
-#     "https://api.sapling.ai/api/v1/aidetect",
-#     json={
-#         "key": "ERCNCCJS75NWG8F37705LVO0Z9M468P6",
-#         "text": "This is sample text."
-#     }
-# )
-url = 'https://sapling.ai/ai-detection-apis'
+def check_bias_with_openai(text):
+    """Analyzes text for potential bias using OpenAI's API with retry logic."""
+
+    prompt = """
+    Analyze the following text for potential bias.
+    Provide a short and concise analysis of any detected bias as well as an overall bias score
+    from 1-10, where 1 is completely neutral and 10 is extremely biased.
+    You do not need to include anything else in your response.
+    You do not need to have any formatting in your response.
+    """
+
+    response = client.responses.create(
+                model="gpt-4o",
+                instructions=prompt,
+                input=text
+            )
+    
+    return response.output_text
+
+
+
+url = 'https://www.huffpost.com/entry/trump-timothy-haugh-nsa-firing-don-bacon_n_67f131a4e4b0b90810dcbbf5'
 soup = chicken_soup(url)
 
 if soup:
@@ -130,11 +143,16 @@ if soup:
         rawText = extract_main_content(soup)
         response = client.responses.create(
             model = "gpt-4o",
-            instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
+            instructions = "This text is the raw text of a website. Clean it up, but DO NOT CHANGE THE CONTENT IN ANY WAY. Remove all potential footers. Remove all formatting from your output. Return only the text, you don't need to say anything else.",
             input = rawText
         )
         #answer = json.loads(response.text)
         file.write(response.output_text)
+        print("File write sucess!")
+        print('---')
+        print(check_bias_with_openai(response.output_text))
+        
+    print("---")    
 
     imgs = extract_images(soup, url)
     imgresults = []
@@ -147,6 +165,8 @@ if soup:
         if result['status'] == 'success':
             imgresults.append(result["type"]["ai_generated"])
     
+    print('Image scores:')
     print(imgresults)
+    print('---')
         
 

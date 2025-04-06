@@ -1,183 +1,38 @@
-Top 5 AI Detection APIs
+Politics  
+Donald Trump  
+Trump administration  
+NSA  
 
-Top 5 AI Detection APIs
+GOP Rep Slams Trump For Firing NSA Director: 'Russia And China Are Laughing At Us'  
 
-As generative AI tools become ubiquitous, both enterprises and educational institutions will need AI Detection capabilities as part of their toolsuite.
+President Donald Trump fired multiple officials after a closed-door meeting with far-right activist Laura Loomer.  
 
-Generative AI tools have taken the world by storm since late 2022. This is particularly true for text generation via AI chatbots like ChatGPT and Bard. Their adoption seems to only be increasing, with a corresponding increase in AI generated content across the internet. This is not inherently negative, but it does raise the need to be able to detect text written by AI agents and differentiate it from human-written text.
+By Marco Margaritoff, Trends Reporter  
+Apr 5, 2025, 11:39 AM EDT  
 
-An entire industry of writing tools will need to respond to this need. Content publishing houses and marketing agencies, wary of being dinged by SEO algorithms, will want AI detection capabilities built into their content management systems. Educational institutions will want ways to check the authenticity of students' work. Media platforms will need ways to verify submissions were not purely AI generated.
+Rep. Don Bacon (R-Neb.) is less than pleased about President Donald Trump firing Gen. Timothy Haugh, who headed both the National Security Agency and U.S. Cyber Command until Thursday — when he was let go without a single reason divulged to voters. “The White House fired one of our best generals and the smartest on cyber operations, and with no explanation,” Bacon told Fox News senior congressional correspondent Chad Pergram on Friday. “Russia and China are laughing at us.”  
 
-How does an AI Content Detection API integration help?
+Chief Pentagon spokesperson Sean Parnell said in a statement Friday to CBS News that the “Defense Department thanks General Timothy Haugh for his decades of service” and that the DoD wishes “him and his family well” — providing no further detail about his exit.  
 
-A great indicator of the rising need for AI detection is the rise in Chrome extensions solving this problem. We offer one as well - AI Content Detector for ChatGPT - Sapling.ai. But while this is a great way for individuals to check their writing, or analyze suspicious looking content online, it doesn't do a great job of solving institutional requirements.
+Several senior members of the National Security Council were also fired.  
 
-Companies will want AI detection built into their regular processes. They would want to make it seamless for their employees to check for AI generated text. Enforcing these checks would be cumbersome and unreliable without integrating it into the tools they're already using. Importantly, companies might not want their data in the cloud, and some API providers, Sapling.ai included, offer self-hosted on-premise deployments. This helps ensure data privacy and isolation. An API integration will allow them to make flagging AI generated content a regular part of their processes.
+Haugh and NSA deputy Wendy Noble were both ousted after Trump met with far-right activist Laura Loomer on Wednesday, The Washington Post reported. Loomer, who has frequently shared QAnon conspiracy theories and is one of Trump’s staunchest social media supporters, told the Post she had advocated for the firings.  
 
-Which are the best AI Content Detector APIs?
+Loomer elaborated on the matter Friday on X, formerly Twitter, arguing that Haugh and Noble “have been disloyal to President Trump” and “that is why they have been fired.”  
 
-We've tried to go over the API providers out there and pick the ones with the best features and support. All of these providers allow developers to send in text to be analyzed, and respond with a probability score. This score indicates how confident the API provider is that the text was human-written or AI-generated. Some also do a sentence-level analysis. The list includes
+She also slammed retired Gen. Mark Milley, who called Trump “a total fascist” in October. “As a Biden appointee, General Haugh had no place serving in the Trump admin given the fact that he was HAND PICKED by General Milley, who was accused of committing treason by President Trump,” she wrote. “Given the fact that the NSA is arguably the most powerful intel agency in the world, we cannot allow for a Biden nominee to hold that position,” she added. “Thus, Haugh was fired today, along with his Obama loving protege, Wendy Noble. This is called VETTING.”  
 
-Sapling.ai (API & SDK)
+Bacon previously criticized Trump's foreign policy position on Russia as "too conciliatory."  
 
-CopyLeaks
+Loomer gave Trump a list of supposedly disloyal officials during their closed-door meeting Wednesday, and successfully called for them to be fired despite national security adviser Michael Waltz reportedly pushing back, The New York Times reported Thursday. The report was based on interviews with eight people with knowledge of the events.  
 
-Originality.ai
+Bacon, who previously criticized Trump for berating Ukrainian President Volodymyr Zelenskyy during their televised meeting in February and called Trump’s stance on Russia “too conciliatory,” shared an additional statement on Haugh’s exit Friday on X.  
 
-GPTZero
+“General Tim Haugh is an outstanding leader and was doing a superb job at Cyber Command and National Security Agency,” he wrote. “He was fired with no public explanation. This action sets back our Cyber and Signals Intelligence operations.”  
 
-Writer
-
-(1) Sapling: AI Content Detector API
-
-Sapling has a history of offering industry-leading AI (Artificial Intelligence) and NLP (Natural Language Processing) APIs.
-
-Sapling now also provides AI content detection as an HTTP API and in Sapling's Javascript and Python SDKs. Our docs page provides sample code for both SDKs, and direct HTTP implementations in cURL, Javascript, and Python. See our Programming Languages to learn how to implement HTTP endpoints in the language of your choice.
-
-Sapling's APIs for AI content detection respond with both an overall score, as well as a sentence level score. These are generated using dedicated models - one trained on classifying large chunks of text, the other being a perplexity-based model.
-
-Sapling APIs can also accept HTML input, making it easier to run AI detection over rich text inputs. These often contain markdown or HTML tags that need to be filtered out before processing the text.
-
-import requests
-
-response = requests.post( "https://api.sapling.ai/api/v1/aidetect", json={ "key": "[API-KEY]", "text": "This is sample text." } )
-
-{ "score": 0.2794727597917829, "sentence_scores": [ { "score": 0, "sentence": "This is sample text." } ], "text": "This is sample text." }
-
-(2) CopyLeaks
-
-CopyLeaks is an established company in the plagiarism space.
-
-They also now have one of the most popular AI content detection extensions, a live demo on their website, as well as API access for the same functionality.
-
-CopyLeaks does offer their services across 15 languages. The API response categorizes both the entire text, as well as particular sections of text that were flagged by the detector. They do not currently offer a way to persist and share these results.
-
-(3) Originality.ai
-
-Originality.ai is also an AI company focused on plagiarism and AI content detection. Their focus target market is comprised of marketing companies and SEO agencies.
-
-They do not offer a free live demo or chrome extension, and their UI offering is gated behind login as well.
-
-They do offer a set of HTTP endpoints for API access to their AI detection models. They have APIs that accept both plain text, as well as website URLs. The response contains scores for the overall text as well as subsections of text.
-
-Their API responses do also contain a shareable public link which can be used to share the results of the scan for a limited time period.
-
-(4) GPTZero
-
-GPTZero is a company focused primarily on detecting GPT-generated AI content.
-
-They offer a free online demo, a Chrome extension, as well as Canvas and Microsoft word integrations.
-
-They have API endpoints that allow developers to process text. The response contains analysis for the overall text, as well sentence and paragraph level scoring. They also offer the same functionality across a list of files through a separate endpoint.
-
-They also do not provide a way to share or persist these results.
-
-(5) Writer
-
-Writer is an AI company which, as its name suggests, provides across-the-board writing tools. This includes LLM based generative tools, grammar checking, brand management amongst others.
-
-For AI detection, they offer a free live demo for small amounts of text (~300 words). They do not have a browser extension.
-
-For users subscribed to a Team plan, or Enterprise plans, they do get access to their API endpoint. The endpoint accepts text and only outputs a single score for the overall text. Sentence/ section level scores are not provided.
-
-They do not provide a way to share or persist these results.
-
-AI Content Detector APIs summary
-
-This is an evolving landscape and companies will be working fast to iterate and keep up with the latest generative models out there. We're summarizing our findings here, and will update as we learn more.
-
-Name
-
-Public Demo
-
-Chrome Extension
-
-API Endpoints
-
-HTML support
-
-Overall Score
-
-Sentence Scores
-
-Result sharing
-
-Sapling.ai
-
-Yes
-
-Yes
-
-Yes
-
-Yes
-
-Yes
-
-Yes
-
-Yes
-
-CopyLeaks
-
-Yes
-
-Yes
-
-Yes
-
-No
-
-Yes
-
-Yes
-
-No
-
-Originality.ai
-
-No
-
-No
-
-Yes
-
-Yes
-
-Yes
-
-Yes
-
-Yes
-
-GPTZero
-
-Yes
-
-Yes
-
-Yes
-
-No
-
-Yes
-
-Yes
-
-No
-
-Writer
-
-Yes
-
-No
-
-Yes
-
-No
-
-Yes
-
-No
-
-No
+Related  
+Donald Trump  
+Trump administration  
+NSA  
+Don Bacon  
+United States Cyber Command  
